@@ -1,0 +1,22 @@
+<list-header add="add()" edit="edit()" search="search">
+    <i class="fa fa-user-md" aria-hidden="true"></i> {{ 'Subscribers' | translate }}
+</list-header>
+
+<div class="table-responsive">
+    <table class="table table-condensed">
+        <thead>
+            <tr>                
+                <th>{{ 'LastName' | translate }}</th>
+                <th>{{ 'FirstName' | translate }}</th>
+                <th>{{ 'Company' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="subscriber in subscribers | filter:search" ng-class="{'active': subscriber.Id == selectedSubscriber.Id}" ng-click="selectRow(subscriber)">                
+                <td>{{subscriber.LastName}}</td>
+                <td>{{subscriber.FirstName}}</td>
+                <td>{{subscriber.Company}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#commands">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand" ng-transclude></span>
+        </div>
+        <div class="collapse navbar-collapse" id="commands">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="{{ 'Search' | translate }}" ng-model="search">
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="javascript:void(0)" ng-click="add()" data-toggle="tooltip" data-placement="top" title="{{ 'Add' | translate }}">
+                        <span class="command">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" ng-click="edit()" data-toggle="tooltip" data-placement="top" title="{{ 'Edit' | translate }}">
+                        <span class="command">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </li>
+                <!--<li>
+                    <a href="javascript:void(0)" ng-click="filter()" data-toggle="tooltip" data-placement="top" title="{{ 'Filter' | translate }}">
+                        <span class="command">
+                            <i class="fa fa-filter" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+</nav>

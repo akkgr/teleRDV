@@ -1,0 +1,18 @@
+<list-header add="add()" edit="edit()" search="search">
+    <i class="fa fa-stethoscope" aria-hidden="true"></i> {{ 'Specialties' | translate }}
+</list-header>
+
+<div class="table-responsive">
+    <table class="table table-condensed">
+        <thead>
+            <tr>                
+                <th>{{ 'Title' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in specialties | filter:search" ng-class="{'active': item.Id == selectedSpecialty.Id}" ng-click="selectRow(item)">                
+                <td>{{item.Title}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

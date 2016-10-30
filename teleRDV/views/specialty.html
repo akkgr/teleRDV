@@ -1,0 +1,16 @@
+<form-header delete="delete()" save="save()">
+    <i class="fa fa-stethoscope" aria-hidden="true"></i> {{ 'Specialty' | translate }}
+</form-header>
+
+<div class="row">
+    <div class="col-sm-12">
+        <form>
+
+            <div class="form-group col-sm-4 col-xs-12">
+                <label>{{ 'Title' | translate }}</label>
+                <input type="text" class="form-control" ng-model="specialty.Title">
+            </div>
+
+        </form>
+    </div>
+</div>

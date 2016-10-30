@@ -1,0 +1,31 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#commands">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand" ng-transclude></span>
+        </div>
+        <div class="collapse navbar-collapse" id="commands">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="javascript:void(0)" ng-click="delete()" data-toggle="tooltip" data-placement="top" title="{{ 'Delete' | translate }}">
+                        <span class="command">
+                            <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" ng-click="save()" data-toggle="tooltip" data-placement="top" title="{{ 'Save' | translate }}">
+                        <span class="command">
+                            <i class="fa fa-save" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

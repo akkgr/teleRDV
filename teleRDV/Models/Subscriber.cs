@@ -1,0 +1,80 @@
+﻿using crm;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+
+namespace teleRDV.Models
+{
+    public class Subscriber
+    {
+        public Subscriber()
+        {
+            Addresses = new List<Address>();
+            Phones = new List<Phone>();
+            Infos = new List<SubscriberInfo>();
+            DivertPhones = new List<Phone>();
+            PaymentMethods = new List<PaymentMethod>();
+            SocialSecurityFunds = new List<SocialSecurityFund>();
+        }
+
+        public string Id { get; set; }
+
+        public string UserId { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string Company { get; set; }
+
+        public string CallAnswer { get; set; }
+        
+        public Specialty Specialty { get; set; }
+
+        [EnsureMinimumElements(1, ErrorMessage = "At least an address is required")]
+        public IList<Address> Addresses { get; set; }
+
+        [EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
+        public IList<Phone> Phones { get; set; }
+
+        public IList<SubscriberInfo> Infos { get; set; }
+        
+        public string FullName { get { return string.Format("{0} {1}", LastName, FirstName); } }
+
+        public string AllPhones { get { return string.Join(", ", this.Phones.Select(t => t.Value)); } }
+
+        public string WorkSchedule { get; set; }
+
+        public string DivertSchedule { get; set; }
+
+        public string SimpleAnswer { get; set; }
+
+        public string EmergencyAnswer { get; set; }
+
+        public string EmergencyWhen { get; set; }
+
+        public string RdvSchedule { get; set; }
+
+        public int RdvDuration { get; set; }
+
+        public int MessagesPerMonth { get; set; }
+
+        public string GeneralInfo { get; set; }
+
+        public string AgentInfo { get; set; }
+
+        public string MessagesInfo { get; set; }
+
+        public string MessagesSchedule { get; set; }
+
+        [EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
+        public IList<Phone> DivertPhones { get; set; }
+
+        public string DivertLine { get; set; }
+
+        public IList<PaymentMethod> PaymentMethods { get; set; }
+
+        public IList<SocialSecurityFund> SocialSecurityFunds { get; set; }
+    }
+}

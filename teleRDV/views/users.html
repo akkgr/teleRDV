@@ -1,0 +1,22 @@
+<list-header add="add()" edit="edit()" search="search">
+    <i class="fa fa-users" aria-hidden="true"></i> {{ 'Users' | translate }}
+</list-header>
+
+<div class="table-responsive">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>{{ 'UserName' | translate }}</th>
+                <th>{{ 'Email' | translate }}</th>
+                <th>{{ 'Roles' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users | filter:search" ng-class="{'active': user.UserName == selectedUser.UserName}" ng-click="selectRow(user)">
+                <td>{{user.UserName}}</td>
+                <td>{{user.Email}}</td>
+                <td>{{user.Roles}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
