@@ -44,9 +44,9 @@ namespace teleRDV.Models
 
         public string AllPhones { get { return string.Join(", ", this.Phones.Select(t => t.Value)); } }
 
-        public string WorkSchedule { get; set; }
+        public Schedule WorkSchedule { get; set; }
 
-        public string DivertSchedule { get; set; }
+        public Schedule DivertSchedule { get; set; }
 
         public string SimpleAnswer { get; set; }
 
@@ -54,7 +54,7 @@ namespace teleRDV.Models
 
         public string EmergencyWhen { get; set; }
 
-        public string RdvSchedule { get; set; }
+        public Schedule RdvSchedule { get; set; }
 
         public int RdvDuration { get; set; }
 
@@ -66,7 +66,7 @@ namespace teleRDV.Models
 
         public string MessagesInfo { get; set; }
 
-        public string MessagesSchedule { get; set; }
+        public Schedule MessagesSchedule { get; set; }
 
         [EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
         public IList<Phone> DivertPhones { get; set; }

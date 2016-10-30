@@ -51,6 +51,10 @@ angular.module('app')
             templateUrl: 'views/specialty.html',
             controller: 'SpecialtyCtrl'
         }).
+        when('/calendar', {
+            templateUrl: 'views/calendar.html',
+            controller: 'CalendarCtrl'
+        }).
         when('/users', {
             templateUrl: 'views/users.html',
             controller: 'UsersCtrl'

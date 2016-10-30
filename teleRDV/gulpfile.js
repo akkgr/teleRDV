@@ -58,4 +58,11 @@ gulp.task('vendorcss', function () {
         .pipe(gulp.dest('css'))
 });
 
-gulp.task('build', ['fonts', 'images', 'nglocale', 'vendorjs', 'vendorcss', 'appjs']);
+gulp.task('appcss', function () {
+    return gulp.src('content/**/*.css')
+        .pipe(concat('app.css'))
+        .pipe(minifyCss())
+        .pipe(gulp.dest('css'))
+});
+
+gulp.task('build', ['fonts', 'images', 'nglocale', 'vendorjs', 'vendorcss', 'appcss', 'appjs']);

@@ -170,6 +170,7 @@
     <Content Include="app\app.js" />
     <Content Include="app\controllers\specialties.js" />
     <Content Include="app\controllers\specialty.js" />
+    <Content Include="app\controllers\calendar.js" />
     <Content Include="app\controllers\user.js" />
     <Content Include="app\controllers\users.js" />
     <Content Include="app\directives\selectPicker.js" />
@@ -188,8 +189,10 @@
     <Content Include="app\services\enumService.js" />
     <Content Include="app\services\localeService.js" />
     <Content Include="app\translations.js" />
+    <Content Include="css\app.css" />
     <Content Include="css\bootstrap.css" />
-    <Content Include="css\main.css" />
+    <Content Include="content\calendar.css" />
+    <Content Include="content\main.css" />
     <Content Include="css\vendor.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -213,6 +216,7 @@
     <Content Include="scripts\angular-locale_en.js" />
     <Content Include="scripts\app.js" />
     <Content Include="scripts\vendor.js" />
+    <Content Include="views\calendar.html" />
     <Content Include="views\specialties.html" />
     <Content Include="views\specialty.html" />
     <Content Include="views\user.html" />
@@ -238,6 +242,7 @@
     <Compile Include="Filters\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Middlewares\GlobalExceptionMiddleware.cs" />
+    <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\SocialSecurityFund.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Specialty.cs" />
