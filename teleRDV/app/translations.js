@@ -32,7 +32,11 @@ angular.module('app')
         'CallAnswer': 'Call Answer',
         'Directions': 'Directions',
         'Specialty': 'Specialty',
-        'Title': 'Title'
+        'Title': 'Title',
+        'PaymentMethods': 'Payment Methods',
+        'PaymentMethod': 'Payment Method',
+        'SocialSecurityFunds': 'Social Security Funds',
+        'SocialSecurityFund': 'Social Security Fund'
     });
 
     $translateProvider.translations('el', {
@@ -65,7 +69,11 @@ angular.module('app')
         'CallAnswer': 'Τρόπος Απάντησης',
         'Directions': 'Πρόσβαση',
         'Specialty': 'Ειδικότητα',
-        'Title': 'Περιγραφή' 
+        'Title': 'Περιγραφή',
+        'PaymentMethods': 'Τρόποι Πληρωμής',
+        'PaymentMethod': 'Τρόπος Πληρωμής',
+        'SocialSecurityFunds': 'Ασφαλιστικά Ταμεία',
+        'SocialSecurityFund': 'Ασφαλιστικό Ταμείο'
     });
 
     $translateProvider.preferredLanguage('el');

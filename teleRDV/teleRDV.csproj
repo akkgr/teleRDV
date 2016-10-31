@@ -168,7 +168,11 @@
   <ItemGroup>
     <None Include=".eslintrc.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\controllers\socialSecurityFunds.js" />
+    <Content Include="app\controllers\paymanetMethods.js" />
+    <Content Include="app\controllers\socialSecurityFund.js" />
     <Content Include="app\controllers\specialties.js" />
+    <Content Include="app\controllers\paymentMethod.js" />
     <Content Include="app\controllers\specialty.js" />
     <Content Include="app\controllers\calendar.js" />
     <Content Include="app\controllers\user.js" />
@@ -217,7 +221,11 @@
     <Content Include="scripts\app.js" />
     <Content Include="scripts\vendor.js" />
     <Content Include="views\calendar.html" />
+    <Content Include="views\socialsecurityfund.html" />
+    <Content Include="views\socialsecurityfunds.html" />
+    <Content Include="views\paymentmethods.html" />
     <Content Include="views\specialties.html" />
+    <Content Include="views\paymentmethod.html" />
     <Content Include="views\specialty.html" />
     <Content Include="views\user.html" />
     <Content Include="views\subscriber.html" />

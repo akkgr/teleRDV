@@ -51,6 +51,22 @@ angular.module('app')
             templateUrl: 'views/specialty.html',
             controller: 'SpecialtyCtrl'
         }).
+        when('/paymentmethods', {
+            templateUrl: 'views/paymentmethods.html',
+            controller: 'PaymentMethodsCtrl'
+        }).
+        when('/paymentmethods/:id', {
+            templateUrl: 'views/paymentmethod.html',
+            controller: 'PaymentMethodCtrl'
+        }).
+        when('/socialsecurityfunds', {
+            templateUrl: 'views/socialsecurityfunds.html',
+            controller: 'SocialSecurityFundsCtrl'
+        }).
+        when('/socialsecurityfunds/:id', {
+            templateUrl: 'views/socialsecurityfund.html',
+            controller: 'SocialSecurityFundCtrl'
+        }).
         when('/calendar', {
             templateUrl: 'views/calendar.html',
             controller: 'CalendarCtrl'
