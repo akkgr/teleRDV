@@ -296,6 +296,7 @@
     <Content Include="logs\error.log" />
     <None Include="package.json" />
     <None Include="Properties\PublishProfiles\crm.pubxml" />
+    <None Include="Properties\PublishProfiles\teleRDV.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

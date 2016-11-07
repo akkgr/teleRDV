@@ -24,7 +24,7 @@ namespace teleRDV
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromHours(8),
-                Provider = new SimpleAuthorizationProvider(),
+                Provider = new SimpleAuthorizationProvider()
                 //RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
 
