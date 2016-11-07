@@ -76,10 +76,10 @@ function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
               }, function () {
                   $http({
                       method: 'DELETE',
-                      url: baseUrl + 'api/people/' + $scope.subscriber.Id
+                      url: baseUrl + 'api/subscribers/' + $scope.subscriber.Id
                   }).then(function successCallback() {
-                      swal("Success", "Contact successfully deleted.", "success");
-                      $location.path('/contacts');
+                      swal("Success", "Subscriber successfully deleted.", "success");
+                      $location.path('/subscribers');
                   }, function errorCallback(response) {
                       if (response.status === -1) {
                           swal("Error", "Server unavailable!", "error");
