@@ -18,23 +18,21 @@ function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
       });      
 
       $scope.getData = function () {
-          if ($routeParams.id === "new") {
-              $scope.subscriber = { Phones: [], Addresses: [], Infos: [], DivertPhones: [], PaymentMethods: [], SocialSecurityFunds: [] };
-          } else {
-              $http({
-                  method: 'GET',
-                  url: baseUrl + 'api/subscribers/' + $routeParams.id
-              }).then(function successCallback(response) {
-                  $scope.subscriber = response.data;
+          $http({
+              method: 'GET',
+              url: baseUrl + 'api/subscribers/' + $routeParams.id
+          }).then(function successCallback(response) {
+              $scope.subscriber = response.data;
+              if ($scope.subscriber.Specialty) {
                   $('.selectpicker').selectpicker('val', $scope.subscriber.Specialty.Id);
-              }, function errorCallback(response) {
-                  if (response.status === -1) {
-                      swal("Error", "Server unavailable!", "error");
-                  } else {
-                      swal("Error", response.statusText + ". " + response.data.Message, "error");
-                  }
-              });
-          }
+              }
+          }, function errorCallback(response) {
+              if (response.status === -1) {
+                  swal("Error", "Server unavailable!", "error");
+              } else {
+                  swal("Error", response.statusText + ". " + response.data.Message, "error");
+              }
+          });
       };
 
       $scope.save = function () {

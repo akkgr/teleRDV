@@ -63,6 +63,23 @@ namespace teleRDV.Controllers
             }
 
             return Ok(enumVals);
-        }        
+        }
+
+        [Route("weekdays")]
+        [HttpGet]
+        public IHttpActionResult GetWeekDays()
+        {
+            var enumVals = new List<object>();
+            foreach (var item in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                enumVals.Add(new
+                {
+                    key = (int)item,
+                    value = item.ToString()
+                });
+            }
+
+            return Ok(enumVals);
+        }
     }
 }

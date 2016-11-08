@@ -1,0 +1,66 @@
+﻿
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ 'Schedule' | translate }}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row seven-cols no-gutter">
+
+            <div class="col-md-1" ng-repeat="n in daysOrder">
+                <div class="row no-gutter">
+
+                    <div class="col-sm-12 col-xs-4">
+                        <div class="row no-gutter">
+                            <div class="col-sm-12">
+                                <button class="btn btn-default btn-sm btn-block" ng-click="changeActive(n)">
+                                    <i class="fa fa-check pull-left" aria-hidden="true" ng-if="schedule.DayEntries[n].Active"></i>
+                                    <i class="fa fa-ban pull-left" aria-hidden="true" ng-if="!schedule.DayEntries[n].Active"></i>
+                                    <span class="pull-right">{{ weekDays[n].value | translate }}</span>
+                                </button>
+                            </div>                            
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-xs-4" ng-repeat="m in timesOrder">
+                        <div class="row no-gutter">
+                            <div class="col-sm-6">
+                                <button class="btn btn-default btn-sm btn-block" 
+                                        uib-popover-template="dynamicPopover.templateUrl" 
+                                        popover-is-open="dynamicPopover.isOpen[n][m][0]" 
+                                        ng-click="popover(n,m,0)" 
+                                        popover-append-to-body="true">
+                                    {{ schedule.DayEntries[n].TimeEntries[m].StartHour | numberFixedLen:2 }} :
+                                    {{ schedule.DayEntries[n].TimeEntries[m].StartMinute | numberFixedLen:2 }}
+                                </button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button class="btn btn-default btn-sm btn-block" 
+                                        uib-popover-template="dynamicPopover.templateUrl" 
+                                        popover-is-open="dynamicPopover.isOpen[n][m][1]" 
+                                        ng-click="popover(n,m,1)" 
+                                        popover-append-to-body="true">
+                                    {{ schedule.DayEntries[n].TimeEntries[m].EndHour | numberFixedLen:2 }} :                                    
+                                    {{ schedule.DayEntries[n].TimeEntries[m].EndMinute | numberFixedLen:2 }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="myPopoverTemplate.html">    
+    <div class="form-group">
+        <label>Hour</label>
+        <input type="number" ng-model="dynamicPopover.hour" class="form-control" min="0" max="23">
+    </div>
+    <div class="form-group">
+        <label>Minute</label>
+        <input type="number" ng-model="dynamicPopover.minute" class="form-control" min="0" max="59">
+    </div>
+</script>

@@ -15,6 +15,7 @@ namespace teleRDV.Models
             DivertPhones = new List<Phone>();
             PaymentMethods = new List<PaymentMethod>();
             SocialSecurityFunds = new List<SocialSecurityFund>();
+            WorkSchedule = new Schedule();
         }
 
         public string Id { get; set; }
@@ -32,10 +33,10 @@ namespace teleRDV.Models
         
         public Specialty Specialty { get; set; }
 
-        [EnsureMinimumElements(1, ErrorMessage = "At least an address is required")]
+        //[EnsureMinimumElements(1, ErrorMessage = "At least an address is required")]
         public IList<Address> Addresses { get; set; }
 
-        [EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
+        //[EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
         public IList<Phone> Phones { get; set; }
 
         public IList<SubscriberInfo> Infos { get; set; }
@@ -68,7 +69,7 @@ namespace teleRDV.Models
 
         public Schedule MessagesSchedule { get; set; }
 
-        [EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
+        //[EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
         public IList<Phone> DivertPhones { get; set; }
 
         public string DivertLine { get; set; }

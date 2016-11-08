@@ -26,10 +26,14 @@ namespace teleRDV.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> Get(string id)
         {
-            var obj = await db.Subscribers.Find(t => t.Id == id).FirstOrDefaultAsync();
-            if (obj == null)
+            var obj = new Subscriber();
+            if (id != "new")            
             {
-                return this.NotFound();
+                obj = await db.Subscribers.Find(t => t.Id == id).FirstOrDefaultAsync();
+                if (obj == null)
+                {
+                    return this.NotFound();
+                }
             }
             return this.Ok(obj);
         }

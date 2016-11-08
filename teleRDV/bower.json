@@ -29,7 +29,8 @@
     "angular-dynamic-locale": "^0.1.32",
     "bootstrap-datepicker": "^1.6.4",
     "angular-bootstrap": "^2.2.0",
-    "bootstrap-ui-datetime-picker": "^2.4.3"
+    "bootstrap-ui-datetime-picker": "^2.4.3",
+    "bootstrap-timepicker": "^0.5.2"
   },
   "overrides": {
     "bootstrap": {

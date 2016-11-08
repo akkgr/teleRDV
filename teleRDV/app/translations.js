@@ -36,7 +36,14 @@ angular.module('app')
         'PaymentMethods': 'Payment Methods',
         'PaymentMethod': 'Payment Method',
         'SocialSecurityFunds': 'Social Security Funds',
-        'SocialSecurityFund': 'Social Security Fund'
+        'SocialSecurityFund': 'Social Security Fund',
+        'Monday': 'Mon',
+        'Tuesday': 'Tue',
+        'Wednesday': 'Wed',
+        'Thursday': 'Thu',
+        'Friday': 'Fri',
+        'Saturday': 'Sat',
+        'Sunday': 'Sun'
     });
 
     $translateProvider.translations('el', {
@@ -73,7 +80,14 @@ angular.module('app')
         'PaymentMethods': 'Τρόποι Πληρωμής',
         'PaymentMethod': 'Τρόπος Πληρωμής',
         'SocialSecurityFunds': 'Ασφαλιστικά Ταμεία',
-        'SocialSecurityFund': 'Ασφαλιστικό Ταμείο'
+        'SocialSecurityFund': 'Ασφαλιστικό Ταμείο',
+        'Monday': 'Δευ',
+        'Tuesday': 'Τρι',
+        'Wednesday': 'Τετ',
+        'Thursday': 'Πεμ',
+        'Friday': 'Παρ',
+        'Saturday': 'Σαβ',
+        'Sunday': 'Κυρ'
     });
 
     $translateProvider.preferredLanguage('el');

@@ -10,4 +10,7 @@ angular.module('app')
     this.PhoneTypes = function () {
         return $http.get(baseUrl + 'api/enum/phone');
     };
+    this.WeekDays = function () {
+        return $http.get(baseUrl + 'api/enum/weekdays');
+    };
 }]);

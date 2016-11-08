@@ -177,6 +177,7 @@
     <Content Include="app\controllers\calendar.js" />
     <Content Include="app\controllers\user.js" />
     <Content Include="app\controllers\users.js" />
+    <Content Include="app\directives\scheduler.js" />
     <Content Include="app\directives\selectPicker.js" />
     <Content Include="app\directives\formHeader.js" />
     <Content Include="app\directives\listHeader.js" />
@@ -184,6 +185,7 @@
     <Content Include="app\directives\myDateInput.js" />
     <Content Include="app\directives\convertToNumber.js" />
     <Content Include="app\directives\stringToDate.js" />
+    <Content Include="app\filters\numberFixedLen.js" />
     <Content Include="app\services\authInterceptorService.js" />
     <Content Include="app\services\authService.js" />
     <Content Include="app\controllers\subscriber.js" />
@@ -208,6 +210,7 @@
     <Content Include="images\itnestfb.jpg" />
     <Content Include="images\itnestyt.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\logplus.png" />
     <Content Include="images\node-closed-2.png" />
     <Content Include="images\node-closed-light.png" />
     <Content Include="images\node-closed.png" />
@@ -221,6 +224,7 @@
     <Content Include="scripts\app.js" />
     <Content Include="scripts\vendor.js" />
     <Content Include="views\calendar.html" />
+    <Content Include="views\scheduler.html" />
     <Content Include="views\socialsecurityfund.html" />
     <Content Include="views\socialsecurityfunds.html" />
     <Content Include="views\paymentmethods.html" />
