@@ -168,6 +168,7 @@
   <ItemGroup>
     <None Include=".eslintrc.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\controllers\callQueue.js" />
     <Content Include="app\controllers\socialSecurityFunds.js" />
     <Content Include="app\controllers\paymanetMethods.js" />
     <Content Include="app\controllers\socialSecurityFund.js" />
@@ -224,6 +225,7 @@
     <Content Include="scripts\app.js" />
     <Content Include="scripts\vendor.js" />
     <Content Include="views\calendar.html" />
+    <Content Include="views\callqueue.html" />
     <Content Include="views\scheduler.html" />
     <Content Include="views\socialsecurityfund.html" />
     <Content Include="views\socialsecurityfunds.html" />
@@ -254,6 +256,7 @@
     <Compile Include="Filters\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Middlewares\GlobalExceptionMiddleware.cs" />
+    <Compile Include="Models\CallQueue.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\SocialSecurityFund.cs" />
     <Compile Include="Models\PaymentMethod.cs" />

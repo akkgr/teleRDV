@@ -7,11 +7,14 @@ angular.module('app')
         transclude: true,
         replace: true,
         scope: {
-            delete: '&',
+            delete: '&?',
             save: '&'
         },
         templateUrl: '/views/form-header.html',
-        link: function () {
+        link: function (scope) {
+
+            scope.canDelete = angular.isDefined(scope.delete) ? true : false;
+
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })

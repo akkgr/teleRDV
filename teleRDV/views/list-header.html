@@ -16,14 +16,14 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li ng-show="canAdd">
                     <a href="javascript:void(0)" ng-click="add()" uib-tooltip="{{'Add' | translate}}">
                         <span class="command">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                         </span>
                     </a>
                 </li>
-                <li>
+                <li ng-show="canEdit">
                     <a href="javascript:void(0)" ng-click="edit()" uib-tooltip="{{ 'Edit' | translate }}">
                         <span class="command">
                             <i class="fa fa-pencil" aria-hidden="true"></i>

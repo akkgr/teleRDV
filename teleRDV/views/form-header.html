@@ -11,7 +11,7 @@
         </div>
         <div class="collapse navbar-collapse" id="commands">
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li ng-show="canDelete">
                     <a href="javascript:void(0)" ng-click="delete()" uib-tooltip="{{ 'Delete' | translate }}">
                         <span class="command">
                             <i class="fa fa-minus-circle" aria-hidden="true"></i>

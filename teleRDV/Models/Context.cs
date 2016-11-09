@@ -27,6 +27,8 @@ namespace teleRDV.Models
         public IMongoCollection<PaymentMethod> PaymentMethods { get; set; }
         public IMongoCollection<SocialSecurityFund> SocialSecurityFunds { get; set; }
 
+        public IMongoCollection<CallQueue> CallQueues { get; set; }
+
         public static void Init()
         {
             BsonClassMap.RegisterClassMap<Subscriber>(cm =>
@@ -54,6 +56,14 @@ namespace teleRDV.Models
             });
 
             BsonClassMap.RegisterClassMap<SocialSecurityFund>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIdMember(cm.GetMemberMap(c => c.Id)
+                    .SetSerializer(new StringSerializer(BsonType.ObjectId))
+                    .SetIdGenerator(StringObjectIdGenerator.Instance));
+            });
+
+            BsonClassMap.RegisterClassMap<CallQueue>(cm =>
             {
                 cm.AutoMap();
                 cm.SetIdMember(cm.GetMemberMap(c => c.Id)

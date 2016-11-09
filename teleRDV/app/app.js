@@ -71,6 +71,10 @@ angular.module('app')
             templateUrl: 'views/calendar.html',
             controller: 'CalendarCtrl'
         }).
+        when('/callqueue', {
+            templateUrl: 'views/callqueue.html',
+            controller: 'CallQueueCtrl'
+        }).
         when('/users', {
             templateUrl: 'views/users.html',
             controller: 'UsersCtrl'

@@ -8,13 +8,17 @@ angular.module('app')
         replace: true,
         scope: {
             search: '=',
-            add: '&',
-            edit: '&',
+            add: '&?',
+            edit: '&?',
             save: '&',
             filter: '&'
         },
         templateUrl: '/views/list-header.html',
-        link: function () {
+        link: function (scope) {
+
+            scope.canAdd = angular.isDefined(scope.add) ? true : false;
+            scope.canEdit = angular.isDefined(scope.edit) ? true : false;
+
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
