@@ -43,7 +43,10 @@ angular.module('app')
         'Thursday': 'Thu',
         'Friday': 'Fri',
         'Saturday': 'Sat',
-        'Sunday': 'Sun'
+        'Sunday': 'Sun',
+        'Schedule': 'Work Schedule',
+        'Hour': 'Hour',
+        'Minute': 'Minute'
     });
 
     $translateProvider.translations('el', {
@@ -87,7 +90,10 @@ angular.module('app')
         'Thursday': 'Πεμ',
         'Friday': 'Παρ',
         'Saturday': 'Σαβ',
-        'Sunday': 'Κυρ'
+        'Sunday': 'Κυρ',
+        'Schedule': 'Ωράριο Λειτουργίας',
+        'Hour': 'Ώρα',
+        'Minute': 'Λεπτά'
     });
 
     $translateProvider.preferredLanguage('el');

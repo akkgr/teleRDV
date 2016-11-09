@@ -23,6 +23,7 @@ function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
               url: baseUrl + 'api/subscribers/' + $routeParams.id
           }).then(function successCallback(response) {
               $scope.subscriber = response.data;
+              $('.selectpicker').selectpicker('refresh');
               if ($scope.subscriber.Specialty) {
                   $('.selectpicker').selectpicker('val', $scope.subscriber.Specialty.Id);
               }
