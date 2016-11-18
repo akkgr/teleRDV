@@ -118,7 +118,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.3.10\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.3.11\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -252,6 +252,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SocialSecurityFundsController.cs" />
     <Compile Include="Controllers\PaymentMethodsController.cs" />
+    <Compile Include="Controllers\CallQueuesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Helper.cs" />

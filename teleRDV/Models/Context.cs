@@ -20,6 +20,7 @@ namespace teleRDV.Models
             Specialties = Database.GetCollection<Specialty>("specialties");
             PaymentMethods = Database.GetCollection<PaymentMethod>("paymentmethods");
             SocialSecurityFunds = Database.GetCollection<SocialSecurityFund>("socialsecurityfund");
+            CallQueues = Database.GetCollection<CallQueue>("callqueues");
         }
 
         public IMongoCollection<Subscriber> Subscribers { get; set; }

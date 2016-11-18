@@ -1,45 +1,55 @@
 ﻿
 <div class="row">
-    <div class="col-sm-5">
+    <div class="col-sm-4">
 
         <form-header save="save()">
-            <i class="fa fa-stethoscope" aria-hidden="true"></i> {{ 'Specialty' | translate }}
+            <i class="fa fa-stethoscope" aria-hidden="true"></i> {{ 'Call' | translate }}
         </form-header>
                 
         <div class="form-group">
             <label>{{ 'Line' | translate }}</label>
-            <input type="text" class="form-control" ng-model="subscriber.LastName">
-        </div>
-        <div class="form-group">
-            <label>{{ 'FullName' | translate }}</label>
-            <input type="text" class="form-control" ng-model="subscriber.FirstName">
+            <input type="text" class="form-control" ng-model="newRow.Line">
         </div>
         <div class="form-group">
             <label>{{ 'PhoneNumber' | translate }}</label>
-            <input type="text" class="form-control" ng-model="subscriber.Company">
+            <input type="text" class="form-control" ng-model="newRow.PhoneNumber">
+        </div>
+        <div class="form-group">
+            <label>{{ 'FullName' | translate }}</label>
+            <input type="text" class="form-control" ng-model="newRow.FullName">
         </div>
         <div class="form-group">
             <label>{{ 'Remarks' | translate }}</label>
-            <textarea class="form-control" ng-model="subscriber.Company"></textarea>
+            <textarea class="form-control" ng-model="newRow.Remarks"></textarea>
         </div>
         
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-8">
 
         <list-header search="search">
-            <i class="fa fa-stethoscope" aria-hidden="true"></i> {{ 'Specialties' | translate }}
+            <i class="fa fa-stethoscope" aria-hidden="true"></i> {{ 'Queue' | translate }}
         </list-header>
 
         <div class="table-responsive">
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>{{ 'Title' | translate }}</th>
+                        <th>{{ 'Line' | translate }}</th>
+                        <th>{{ 'PhoneNumber' | translate }}</th>
+                        <th>{{ 'FullName' | translate }}</th>
+                        <th>{{ 'Remarks' | translate }}</th>
+                        <!--<th>{{ 'Inserted' | translate }}</th>
+                        <th>{{ 'Closed' | translate }}</th>-->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in specialties | filter:search" ng-class="{'active': item.Id == selectedSpecialty.Id}" ng-click="selectRow(item)">
-                        <td>{{item.Title}}</td>
+                    <tr ng-repeat="item in data | filter:search" ng-class="{'active': item.Id == selectedRow.Id}" ng-click="selectRow(item)">
+                        <td>{{item.Line}}</td>
+                        <td>{{item.PhoneNumber}}</td>
+                        <td>{{item.FullName}}</td>
+                        <td>{{item.Remarks}}</td>
+                        <!--<td>{{item.Inserted | date:'dd/MM/yyyy hh:mm'}}</td>
+                        <td>{{item.Closed | date:'dd/MM/yyyy hh:mm'}}</td>-->
                     </tr>
                 </tbody>
             </table>

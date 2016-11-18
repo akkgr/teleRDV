@@ -5,12 +5,14 @@ angular.module('app')
 .controller('CallQueueCtrl', ['$scope', '$http', '$location', 'baseUrl',
   function ($scope, $http, $location, baseUrl) {
 
+      $scope.newRow = {};
+
       $scope.getData = function () {
           $http({
               method: 'GET',
-              url: baseUrl + 'api/subscribers'
+              url: baseUrl + 'api/callqueues'
           }).then(function successCallback(response) {
-              $scope.subscribers = response.data;
+              $scope.data = response.data;
           }, function errorCallback(response) {
               if (response.status === -1) {
                   swal("Error", "Server unavailable!", "error");
@@ -21,36 +23,29 @@ angular.module('app')
       };
 
       $scope.selectRow = function (row) {
-          $scope.selectedSubscriber = row;
+          $scope.selectedRow = row;
       };
 
-      $scope.add = function () {
-          $location.path('/subscribers/new');
-      };
+      $scope.save = function () {
 
-      $scope.edit = function () {
-          if ($scope.selectedSubscriber) {
-              $location.path('/subscribers/' + $scope.selectedSubscriber.Id);
-          }
-      };
-
-      $scope.getSpecialties = function () {
           $http({
-              method: 'GET',
-              url: baseUrl + 'api/specialties/'
+              method: 'POST',
+              url: 'api/callqueues',
+              data: $scope.newRow
           }).then(function successCallback(response) {
-              $scope.specialties = response.data;
-              $('.selectpicker').selectpicker('refresh');
+              $scope.newRow = response.data;
+              swal("Success", "Call successfully saved.", "success");
+              $scope.data.push($scope.newRow);
+              $scope.newRow = {};
           }, function errorCallback(response) {
               if (response.status === -1) {
                   swal("Error", "Server unavailable!", "error");
               } else {
                   swal("Error", response.statusText + ". " + response.data.Message, "error");
               }
-          });
-      };
-
-      $scope.getSpecialties();
+          });          
+      }
+                              
       $scope.getData();
 
   }]);
