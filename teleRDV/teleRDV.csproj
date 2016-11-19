@@ -201,6 +201,7 @@
     <Content Include="content\calendar.css" />
     <Content Include="content\main.css" />
     <Content Include="css\vendor.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <None Include="gulpfile.js" />
