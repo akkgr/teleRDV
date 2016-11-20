@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace teleRDV.Models
 {
-    public class SocialSecurityFund : BaseModel
+    public abstract class BaseModel
     {
-        public string Title { get; set; }
+        public string Id { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using FluentValidation.WebApi;
+using Serilog;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace teleRDV
 {
@@ -7,8 +9,12 @@ namespace teleRDV
     {
         public static void Register(HttpConfiguration config)
         {
+            var log = config.DependencyResolver.GetService(typeof(ILogger)) as ILogger;
+            //config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler(log));
+            //config.Services.Replace(typeof(IExceptionLogger), new UnhandledExceptionLogger(log));
+
             config.Filters.Add(new AuthorizeAttribute());
-            config.Filters.Add(new CustomExceptionFilterAttribute());
+            config.Filters.Add(new CustomExceptionFilterAttribute(log));
             config.Filters.Add(new ValidateModelAttribute());
 
             // Web API configuration and services

@@ -1,4 +1,4 @@
-using NLog;
+using Serilog;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -8,7 +8,11 @@ namespace teleRDV
 {
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private ILogger logger;
+        public CustomExceptionFilterAttribute(ILogger log)
+        {
+            logger = log;
+        }
 
         public override void OnException(HttpActionExecutedContext context)
         {

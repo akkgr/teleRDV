@@ -1,5 +1,5 @@
 using Microsoft.Owin;
-using NLog;
+using Serilog;
 using System;
 using System.Threading.Tasks;
 
@@ -7,10 +7,12 @@ namespace teleRDV
 {
     public class GlobalExceptionMiddleware : OwinMiddleware
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-
-        public GlobalExceptionMiddleware(OwinMiddleware next) : base(next)
-        { }
+        private ILogger logger;
+        
+        public GlobalExceptionMiddleware(OwinMiddleware next, ILogger log) : base(next)
+        {
+            logger = log;
+        }
 
         public override async Task Invoke(IOwinContext context)
         {

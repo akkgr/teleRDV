@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace teleRDV.Models
 {
-    public class PaymentMethod
+    public class PaymentMethod : BaseModel
     {
-        public string Id { get; set; }
         public string Title { get; set; }
     }
 }

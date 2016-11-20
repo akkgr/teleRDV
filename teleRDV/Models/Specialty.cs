@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace teleRDV.Models
 {
-    public class Specialty
+    public class Specialty : BaseModel
     {
-        public string Id { get; set; }
         public string Title { get; set; }
     }
 }

@@ -32,45 +32,14 @@ namespace teleRDV.Models
 
         public static void Init()
         {
-            BsonClassMap.RegisterClassMap<Subscriber>(cm =>
+            BsonClassMap.RegisterClassMap<BaseModel>(cm =>
             {
                 cm.AutoMap();
                 cm.SetIdMember(cm.GetMemberMap(c => c.Id)
                     .SetSerializer(new StringSerializer(BsonType.ObjectId))
                     .SetIdGenerator(StringObjectIdGenerator.Instance));
             });
-
-            BsonClassMap.RegisterClassMap<Specialty>(cm =>
-            {
-                cm.AutoMap();
-                cm.SetIdMember(cm.GetMemberMap(c => c.Id)
-                    .SetSerializer(new StringSerializer(BsonType.ObjectId))
-                    .SetIdGenerator(StringObjectIdGenerator.Instance));
-            });
-
-            BsonClassMap.RegisterClassMap<PaymentMethod>(cm =>
-            {
-                cm.AutoMap();
-                cm.SetIdMember(cm.GetMemberMap(c => c.Id)
-                    .SetSerializer(new StringSerializer(BsonType.ObjectId))
-                    .SetIdGenerator(StringObjectIdGenerator.Instance));
-            });
-
-            BsonClassMap.RegisterClassMap<SocialSecurityFund>(cm =>
-            {
-                cm.AutoMap();
-                cm.SetIdMember(cm.GetMemberMap(c => c.Id)
-                    .SetSerializer(new StringSerializer(BsonType.ObjectId))
-                    .SetIdGenerator(StringObjectIdGenerator.Instance));
-            });
-
-            BsonClassMap.RegisterClassMap<CallQueue>(cm =>
-            {
-                cm.AutoMap();
-                cm.SetIdMember(cm.GetMemberMap(c => c.Id)
-                    .SetSerializer(new StringSerializer(BsonType.ObjectId))
-                    .SetIdGenerator(StringObjectIdGenerator.Instance));
-            });
+            
         }
     }
 }

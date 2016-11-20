@@ -7,14 +7,18 @@ using System.Web.Http;
 
 namespace teleRDV.Controllers
 {
-    public class SpecialtiesController : ApiController
+    public class SpecialtiesController : BaseController
     {
-        private readonly Context db;
-
-        public SpecialtiesController()
+        public SpecialtiesController(Context ctx) : base(ctx)
         {
-            this.db = new Context();
         }
+
+        //private readonly Context db;
+
+        //public SpecialtiesController(Context ctx)
+        //{
+        //    this.db = ctx;
+        //}
 
         // GET: api/values
         [HttpGet]

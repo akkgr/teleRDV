@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace teleRDV.Models
 {
-    public class Subscriber
+    public class Subscriber : BaseModel
     {
         public Subscriber()
         {
@@ -17,9 +17,7 @@ namespace teleRDV.Models
             SocialSecurityFunds = new List<SocialSecurityFund>();
             WorkSchedule = new Schedule();
         }
-
-        public string Id { get; set; }
-
+                
         public string UserId { get; set; }
 
         [Required]

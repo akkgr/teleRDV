@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace teleRDV.Models
 {
-    public class CallQueue
-    {
-        public string Id { get; set; }
+    public class CallQueue : BaseModel
+    {       
         public string Line { get; set; }
         public string PhoneNumber { get; set; }
         public string FullName { get; set; }
