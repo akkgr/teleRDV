@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Serilog;
+﻿using Serilog;
 using System.Web.Http.ExceptionHandling;
 
 namespace teleRDV
@@ -11,6 +6,7 @@ namespace teleRDV
     public class UnhandledExceptionLogger : ExceptionLogger
     {
         private ILogger logger;
+
         public UnhandledExceptionLogger(ILogger log)
         {
             logger = log;

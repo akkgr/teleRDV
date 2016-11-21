@@ -1,24 +1,18 @@
-using teleRDV.Models;
 using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
-    public class SpecialtiesController : BaseController
+    public class SpecialtiesController : ApiController
     {
-        public SpecialtiesController(Context ctx) : base(ctx)
+        private readonly Context db;
+
+        public SpecialtiesController(Context ctx)
         {
+            db = ctx;
         }
-
-        //private readonly Context db;
-
-        //public SpecialtiesController(Context ctx)
-        //{
-        //    this.db = ctx;
-        //}
 
         // GET: api/values
         [HttpGet]
@@ -27,7 +21,7 @@ namespace teleRDV.Controllers
             var list = await db.Specialties.Find(t => true).ToListAsync();
             return Ok(list);
         }
-        
+
         // GET api/values/5
         [HttpGet]
         public async Task<IHttpActionResult> Get(string id)
@@ -75,8 +69,8 @@ namespace teleRDV.Controllers
                 {
                     return this.BadRequest(Resources.Error.SpecialtyHasSubscribers);
                 }
-            }        
-            
+            }
+
             await db.Specialties.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
         }

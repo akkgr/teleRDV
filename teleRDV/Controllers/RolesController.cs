@@ -1,21 +1,20 @@
 using AspNet.Identity.MongoDB;
-using teleRDV.Models;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
+using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
     [Authorize(Roles = "Administrator")]
     public class RolesController : ApiController
     {
-        private readonly ApplicationIdentityContext db;
+        private readonly Context db;
 
-        public RolesController()
+        public RolesController(Context ctx)
         {
-            this.db = ApplicationIdentityContext.Create();
+            this.db = ctx;
         }
 
         // GET: api/values
@@ -39,7 +38,7 @@ namespace teleRDV.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IHttpActionResult> Post([FromBody]IdentityRole value)
+        public async Task<IHttpActionResult> Post([FromBody]Role value)
         {
             await db.Roles.InsertOneAsync(value);
             return this.Ok(value);
@@ -47,7 +46,7 @@ namespace teleRDV.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IHttpActionResult> Put(string id, [FromBody]IdentityRole value)
+        public async Task<IHttpActionResult> Put(string id, [FromBody]Role value)
         {
             var obj = await db.Roles.Find(t => t.Id == id).FirstOrDefaultAsync();
             if (obj == null)
@@ -55,7 +54,7 @@ namespace teleRDV.Controllers
                 return this.NotFound();
             }
 
-            var query = Builders<IdentityRole>.Filter.Eq(e => e.Id, id);
+            var query = Builders<Role>.Filter.Eq(e => e.Id, id);
             await db.Roles.ReplaceOneAsync(query, value);
             return this.Ok(value);
         }
@@ -70,14 +69,14 @@ namespace teleRDV.Controllers
                 return this.NotFound();
             }
 
-            var builder = Builders<ApplicationUser>.Filter;
+            var builder = Builders<User>.Filter;
             var filter = builder.Eq("User.Roles", obj.Name);
             var result = await db.Users.Find(filter).CountAsync();
             if (result > 0)
             {
                 return this.BadRequest();
             }
-            
+
             if (obj.Name == "Administrator")
             {
                 return this.BadRequest();

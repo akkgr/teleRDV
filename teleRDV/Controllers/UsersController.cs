@@ -1,29 +1,27 @@
-using teleRDV.Models;
-using Microsoft.AspNet.Identity.Owin;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
+using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
     [Authorize(Roles = "Administrator")]
     public class UsersController : ApiController
     {
-        private readonly ApplicationIdentityContext db;
+        private readonly Context db;
         private readonly ApplicationUserManager userManager;
 
-        public UsersController()
+        public UsersController(Context ctx, ApplicationUserManager um)
         {
-            this.db = ApplicationIdentityContext.Create();
-            this.userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            this.db = ctx;
+            this.userManager = um;
         }
 
         // GET: api/values
         [HttpGet]
-        public async Task<IEnumerable<ApplicationUser>> Get()
+        public async Task<IEnumerable<User>> Get()
         {
             return await db.Users.Find(t => true).ToListAsync();
         }
@@ -42,7 +40,7 @@ namespace teleRDV.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IHttpActionResult> Post([FromBody]ApplicationUser value)
+        public async Task<IHttpActionResult> Post([FromBody]User value)
         {
             var result = await userManager.CreateAsync(value, value.Password);
             if (!result.Succeeded)
@@ -56,7 +54,7 @@ namespace teleRDV.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IHttpActionResult> Put(string id, [FromBody]ApplicationUser value)
+        public async Task<IHttpActionResult> Put(string id, [FromBody]User value)
         {
             var user = await userManager.FindByIdAsync(id);
 
@@ -70,7 +68,7 @@ namespace teleRDV.Controllers
             }
 
             result = await userManager.AddUserToRolesAsync(user.Id, value.Roles.Except(user.Roles).ToList<string>());
-            if(!result.Succeeded)
+            if (!result.Succeeded)
             {
                 var errors = string.Join(", ", result.Errors);
                 return this.BadRequest(errors);
@@ -82,7 +80,7 @@ namespace teleRDV.Controllers
                 var errors = string.Join(", ", result.Errors);
                 return this.BadRequest(errors);
             }
-            
+
             return this.Ok(user);
         }
 

@@ -1,8 +1,11 @@
+using Autofac;
+using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
+using System.Web.Http;
 
 namespace teleRDV
 {
@@ -14,18 +17,12 @@ namespace teleRDV
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Configure the db context, user manager and role manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationIdentityContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
-
             OAuthOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromHours(8),
                 Provider = new SimpleAuthorizationProvider()
-                //RefreshTokenProvider = new SimpleRefreshTokenProvider()
             };
 
             OAuthBearerOptions = new OAuthBearerAuthenticationOptions();

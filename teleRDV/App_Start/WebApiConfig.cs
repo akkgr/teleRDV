@@ -1,7 +1,6 @@
 ﻿using FluentValidation.WebApi;
 using Serilog;
 using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
 
 namespace teleRDV
 {

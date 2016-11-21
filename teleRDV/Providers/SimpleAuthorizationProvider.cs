@@ -1,11 +1,12 @@
-using teleRDV.Models;
-using Microsoft.AspNet.Identity.Owin;
+using Autofac;
+using Autofac.Integration.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using teleRDV.Models;
 
 namespace teleRDV
 {
@@ -51,9 +52,9 @@ namespace teleRDV
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-            
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            var autofacLifetimeScope = OwinContextExtensions.GetAutofacLifetimeScope(context.OwinContext);
+            var userManager = autofacLifetimeScope.Resolve<ApplicationUserManager>();
+            User user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {
@@ -63,7 +64,7 @@ namespace teleRDV
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            foreach(var role in user.Roles)
+            foreach (var role in user.Roles)
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, role));
             }

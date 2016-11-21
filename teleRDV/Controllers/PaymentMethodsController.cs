@@ -1,9 +1,7 @@
-using teleRDV.Models;
 using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
@@ -11,9 +9,9 @@ namespace teleRDV.Controllers
     {
         private readonly Context db;
 
-        public PaymentMethodsController()
+        public PaymentMethodsController(Context ctx)
         {
-            this.db = new Context();
+            this.db = ctx;
         }
 
         // GET: api/values
@@ -23,7 +21,7 @@ namespace teleRDV.Controllers
             var list = await db.PaymentMethods.Find(t => true).ToListAsync();
             return Ok(list);
         }
-        
+
         // GET api/values/5
         [HttpGet]
         public async Task<IHttpActionResult> Get(string id)
@@ -71,8 +69,8 @@ namespace teleRDV.Controllers
                 {
                     return this.BadRequest(Resources.Error.PaymentMethodHasSubscribers);
                 }
-            }        
-            
+            }
+
             await db.PaymentMethods.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
         }

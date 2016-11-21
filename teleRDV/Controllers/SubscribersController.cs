@@ -1,8 +1,8 @@
-using teleRDV.Models;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
@@ -10,9 +10,9 @@ namespace teleRDV.Controllers
     {
         private readonly Context db;
 
-        public SubscribersController()
+        public SubscribersController(Context ctx)
         {
-            this.db = new Context();
+            this.db = ctx;
         }
 
         // GET: api/values
@@ -27,7 +27,7 @@ namespace teleRDV.Controllers
         public async Task<IHttpActionResult> Get(string id)
         {
             var obj = new Subscriber();
-            if (id != "new")            
+            if (id != "new")
             {
                 obj = await db.Subscribers.Find(t => t.Id == id).FirstOrDefaultAsync();
                 if (obj == null)
@@ -64,7 +64,7 @@ namespace teleRDV.Controllers
         // DELETE api/values/5
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(string id)
-        {            
+        {
             await db.Subscribers.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
         }

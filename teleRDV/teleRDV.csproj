@@ -269,13 +269,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\ApplicationIdentityContext.cs" />
-    <Compile Include="App_Start\EnsureAuthIndexes.cs" />
     <Compile Include="App_Start\GlobalExceptionHandler.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\UnhandledExceptionLogger.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EnumController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SocialSecurityFundsController.cs" />
@@ -287,6 +284,7 @@
     <Compile Include="Middlewares\GlobalExceptionMiddleware.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CallQueue.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\SocialSecurityFund.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
@@ -305,7 +303,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AddressType.cs" />
     <Compile Include="Models\Context.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\Subscriber.cs" />
     <Compile Include="Models\PhoneType.cs" />
     <Compile Include="Models\Phone.cs" />

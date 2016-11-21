@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using teleRDV.Models;
 
@@ -46,7 +43,7 @@ namespace teleRDV.Controllers
 
             return Ok(enumVals);
         }
-                
+
         [Route("phone")]
         [HttpGet]
         public IHttpActionResult GetPhone()

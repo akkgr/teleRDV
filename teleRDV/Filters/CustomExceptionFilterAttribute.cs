@@ -9,6 +9,7 @@ namespace teleRDV
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {
         private ILogger logger;
+
         public CustomExceptionFilterAttribute(ILogger log)
         {
             logger = log;
