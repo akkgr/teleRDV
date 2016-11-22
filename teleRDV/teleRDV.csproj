@@ -283,7 +283,11 @@
     <Compile Include="App_Start\Helper.cs" />
     <Compile Include="Middlewares\GlobalExceptionMiddleware.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\CallEntry.cs" />
     <Compile Include="Models\CallQueue.cs" />
+    <Compile Include="Models\CallReason.cs" />
+    <Compile Include="Models\CallStatus.cs" />
+    <Compile Include="Models\CallType.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\SocialSecurityFund.cs" />

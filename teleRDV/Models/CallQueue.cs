@@ -13,6 +13,8 @@ namespace teleRDV.Models
         public string FullName { get; set; }
         public string Remarks { get; set; }
         public DateTime Inserted { get; set; }
+        public string InUserId { get; set; }
         public DateTime? Closed { get; set; }
+        public string OutUserId { get; set; }
     }
 }

@@ -17,7 +17,10 @@ namespace teleRDV.Models
             SocialSecurityFunds = new List<SocialSecurityFund>();
             WorkSchedule = new Schedule();
         }
-                
+
+        [Required]
+        public string CallNumber { get; set; }
+
         public string UserId { get; set; }
 
         [Required]

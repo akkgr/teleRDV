@@ -1,30 +1,38 @@
 ﻿
 <div class="row">
-    <div class="col-sm-4">
+
+    <div class="col-sm-12">
 
         <form-header save="save()">
             <i class="fa fa-phone" aria-hidden="true"></i> {{ 'Call' | translate }}
         </form-header>
-                
-        <div class="form-group">
-            <label>{{ 'Line' | translate }}</label>
-            <input type="text" class="form-control" ng-model="newRow.Line">
-        </div>
-        <div class="form-group">
-            <label>{{ 'PhoneNumber' | translate }}</label>
-            <input type="text" class="form-control" ng-model="newRow.PhoneNumber">
-        </div>
-        <div class="form-group">
-            <label>{{ 'FullName' | translate }}</label>
-            <input type="text" class="form-control" ng-model="newRow.FullName">
-        </div>
-        <div class="form-group">
-            <label>{{ 'Remarks' | translate }}</label>
-            <textarea class="form-control" ng-model="newRow.Remarks"></textarea>
+
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <label>{{ 'Line' | translate }}</label>
+                <input type="text" class="form-control" ng-model="newRow.Line">
+            </div>
+            <div class="form-group col-sm-2">
+                <label>{{ 'PhoneNumber' | translate }}</label>
+                <input type="text" class="form-control" ng-model="newRow.PhoneNumber">
+            </div>
+            <div class="form-group col-sm-3">
+                <label>{{ 'FullName' | translate }}</label>
+                <input type="text" class="form-control" ng-model="newRow.FullName">
+            </div>
+            <div class="form-group col-sm-5">
+                <label>{{ 'Remarks' | translate }}</label>
+                <textarea class="form-control" ng-model="newRow.Remarks"></textarea>
+            </div>
         </div>
         
     </div>
-    <div class="col-sm-8">
+
+</div>
+
+<div class="row">
+
+    <div class="col-sm-12">
 
         <list-header search="search">
             <i class="fa fa-list" aria-hidden="true"></i> {{ 'Queue' | translate }}
@@ -54,6 +62,7 @@
                 </tbody>
             </table>
         </div>
-              
+
     </div>
+
 </div>

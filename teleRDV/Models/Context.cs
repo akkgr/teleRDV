@@ -34,8 +34,9 @@ namespace teleRDV.Models
         public IMongoCollection<Specialty> Specialties { get; set; }
         public IMongoCollection<PaymentMethod> PaymentMethods { get; set; }
         public IMongoCollection<SocialSecurityFund> SocialSecurityFunds { get; set; }
-
+        public IMongoCollection<CallReason> CallReasons { get; set; }
         public IMongoCollection<CallQueue> CallQueues { get; set; }
+        public IMongoCollection<CallEntry> CallHistory { get; set; }
 
         private void EnsureIndexes()
         {
