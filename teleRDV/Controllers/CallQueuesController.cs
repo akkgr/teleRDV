@@ -18,19 +18,19 @@ namespace teleRDV.Controllers
 
         // GET: api/values
         [HttpGet]
-        public async Task<IEnumerable<CallQueue>> Get()
+        public async Task<IEnumerable<CallEntry>> Get()
         {
-            return await db.CallQueues.Find(t => true).ToListAsync();
+            return await db.CallQueue.Find(t => true).ToListAsync();
         }
 
         // GET api/values/5
         [HttpGet]
         public async Task<IHttpActionResult> Get(string id)
         {
-            var obj = new CallQueue();
+            var obj = new CallEntry();
             if (id != "new")
             {
-                obj = await db.CallQueues.Find(t => t.Id == id).FirstOrDefaultAsync();
+                obj = await db.CallQueue.Find(t => t.Id == id).FirstOrDefaultAsync();
                 if (obj == null)
                 {
                     return this.NotFound();
@@ -41,25 +41,25 @@ namespace teleRDV.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IHttpActionResult> Post([FromBody]CallQueue value)
+        public async Task<IHttpActionResult> Post([FromBody]CallEntry value)
         {
-            value.Inserted = DateTime.Now;
-            await db.CallQueues.InsertOneAsync(value);
+            value.Started = DateTime.Now;
+            await db.CallQueue.InsertOneAsync(value);
             return this.Ok(value);
         }
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IHttpActionResult> Put(string id, [FromBody]CallQueue value)
+        public async Task<IHttpActionResult> Put(string id, [FromBody]CallEntry value)
         {
-            var obj = await db.CallQueues.Find(t => t.Id == id).FirstOrDefaultAsync();
+            var obj = await db.CallQueue.Find(t => t.Id == id).FirstOrDefaultAsync();
             if (obj == null)
             {
                 return this.NotFound();
             }
 
-            var query = Builders<CallQueue>.Filter.Eq(e => e.Id, id);
-            await db.CallQueues.ReplaceOneAsync(query, value);
+            var query = Builders<CallEntry>.Filter.Eq(e => e.Id, id);
+            await db.CallQueue.ReplaceOneAsync(query, value);
             return this.Ok(value);
         }
 
@@ -67,7 +67,7 @@ namespace teleRDV.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(string id)
         {
-            await db.CallQueues.FindOneAndDeleteAsync(t => t.Id == id);
+            await db.CallQueue.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
         }
     }

@@ -1,5 +1,4 @@
-﻿using crm;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -11,11 +10,12 @@ namespace teleRDV.Models
         {
             Addresses = new List<Address>();
             Phones = new List<Phone>();
-            Infos = new List<SubscriberInfo>();
+            Infos = new List<Info>();
             DivertPhones = new List<Phone>();
             PaymentMethods = new List<PaymentMethod>();
             SocialSecurityFunds = new List<SocialSecurityFund>();
             WorkSchedule = new Schedule();
+            Faqs = new List<Faq>();
         }
 
         [Required]
@@ -31,7 +31,7 @@ namespace teleRDV.Models
         public string Company { get; set; }
 
         public string CallAnswer { get; set; }
-        
+
         public Specialty Specialty { get; set; }
 
         //[EnsureMinimumElements(1, ErrorMessage = "At least an address is required")]
@@ -40,8 +40,8 @@ namespace teleRDV.Models
         //[EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
         public IList<Phone> Phones { get; set; }
 
-        public IList<SubscriberInfo> Infos { get; set; }
-        
+        public IList<Info> Infos { get; set; }
+
         public string FullName { get { return string.Format("{0} {1}", LastName, FirstName); } }
 
         public string AllPhones { get { return string.Join(", ", this.Phones.Select(t => t.Value)); } }
@@ -78,5 +78,7 @@ namespace teleRDV.Models
         public IList<PaymentMethod> PaymentMethods { get; set; }
 
         public IList<SocialSecurityFund> SocialSecurityFunds { get; set; }
+
+        public IList<Faq> Faqs { get; set; }
     }
 }

@@ -10,10 +10,13 @@ namespace teleRDV.Models
     {
         [BsonIgnore]
         public string Password { get; set; }
+
         [BsonIgnore]
         public string OldPassword { get; set; }
+
         [BsonIgnore]
         public string NewPassword { get; set; }
+
         [BsonIgnore]
         public string ConfirmPassword { get; set; }
 

@@ -1,5 +1,4 @@
-﻿using AspNet.Identity.MongoDB;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Bson.Serialization.Serializers;
@@ -17,14 +16,17 @@ namespace teleRDV.Models
             client = new MongoClient(Properties.Settings.Default.Connection);
             database = client.GetDatabase(Properties.Settings.Default.Database);
 
-            Users = database.GetCollection<User>("users");
-            Roles = database.GetCollection<Role>("roles");
-            Subscribers = database.GetCollection<Subscriber>("subscribers");
-            Specialties = database.GetCollection<Specialty>("specialties");
-            PaymentMethods = database.GetCollection<PaymentMethod>("paymentmethods");
-            SocialSecurityFunds = database.GetCollection<SocialSecurityFund>("socialsecurityfund");
-            CallQueues = database.GetCollection<CallQueue>("callqueues");
-
+            Users = database.GetCollection<User>("Users");
+            Roles = database.GetCollection<Role>("Roles");
+            Subscribers = database.GetCollection<Subscriber>("Subscribers");
+            Specialties = database.GetCollection<Specialty>("Specialties");
+            PaymentMethods = database.GetCollection<PaymentMethod>("PaymentMethods");
+            SocialSecurityFunds = database.GetCollection<SocialSecurityFund>("SocialSecurityFunds");
+            CallReasons = database.GetCollection<CallReason>("CallReasons");
+            CallQueue = database.GetCollection<CallEntry>("CallQueue");
+            CallHistory = database.GetCollection<CallEntry>("CallHistory");
+            People = database.GetCollection<Person>("People");
+            Appointments = database.GetCollection<Appointment>("Appointments");
             EnsureIndexes();
         }
 
@@ -35,8 +37,10 @@ namespace teleRDV.Models
         public IMongoCollection<PaymentMethod> PaymentMethods { get; set; }
         public IMongoCollection<SocialSecurityFund> SocialSecurityFunds { get; set; }
         public IMongoCollection<CallReason> CallReasons { get; set; }
-        public IMongoCollection<CallQueue> CallQueues { get; set; }
+        public IMongoCollection<CallEntry> CallQueue { get; set; }
         public IMongoCollection<CallEntry> CallHistory { get; set; }
+        public IMongoCollection<Person> People { get; set; }
+        public IMongoCollection<Appointment> Appointments { get; set; }
 
         private void EnsureIndexes()
         {
@@ -56,7 +60,7 @@ namespace teleRDV.Models
                 cm.SetIdMember(cm.GetMemberMap(c => c.Id)
                     .SetSerializer(new StringSerializer(BsonType.ObjectId))
                     .SetIdGenerator(StringObjectIdGenerator.Instance));
-            });            
+            });
         }
     }
 }

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace teleRDV.Models
-{    
+{
     public class Schedule
     {
         public Schedule()
@@ -23,7 +19,7 @@ namespace teleRDV.Models
 
         public DayEntry[] DayEntries { get; set; }
     }
-    
+
     public class DayEntry
     {
         public DayEntry()
@@ -40,12 +36,15 @@ namespace teleRDV.Models
 
     public class TimeEntry
     {
-        [Range(0,23)]
+        [Range(0, 23)]
         public int StartHour { get; set; }
+
         [Range(0, 59)]
         public int StartMinute { get; set; }
+
         [Range(0, 23)]
         public int EndHour { get; set; }
+
         [Range(0, 59)]
         public int EndMinute { get; set; }
     }

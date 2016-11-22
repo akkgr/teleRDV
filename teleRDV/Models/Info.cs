@@ -2,7 +2,7 @@
 
 namespace teleRDV.Models
 {
-    public class SubscriberInfo
+    public class Info
     {
         [Required]
         public InfoType InfoType { get; set; }
