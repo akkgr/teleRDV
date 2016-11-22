@@ -4,19 +4,7 @@
 angular.module('app')
 .controller('SubscriberCtrl', ['$scope', '$http', '$routeParams', 'baseUrl', 'enumService', '$location',
 function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
-    
-      enumService.PhoneTypes().then(function (response) {
-          $scope.phoneTypes = response.data;
-      });
-      
-      enumService.AddressTypes().then(function (response) {
-          $scope.addressTypes = response.data;
-      });
-
-      enumService.InfoTypes().then(function (response) {
-          $scope.infoTypes = response.data;
-      });      
-
+ 
       $scope.getData = function () {
           $http({
               method: 'GET',
@@ -88,52 +76,8 @@ function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
                   });
               });
           }
-      };
-
-      $scope.addAddress = function () {
-          $scope.subscriber.Addresses.push({});
-      };
-
-      $scope.deleteAddress = function (address) {
-          var index = $scope.subscriber.Addresses.indexOf(address, 0);
-          if (index > -1) {
-              $scope.subscriber.Addresses.splice(index, 1);
-          }
-      };
-
-      $scope.addPhone = function () {
-          $scope.subscriber.Phones.push({});
-      };
-
-      $scope.deletePhone = function (phone) {
-          var index = $scope.subscriber.Phones.indexOf(phone, 0);
-          if (index > -1) {
-              $scope.subscriber.Phones.splice(index, 1);
-          }
-      };
-
-      $scope.addInfo = function () {
-          $scope.subscriber.Infos.push({});
-      };
-
-      $scope.deleteInfo = function (phone) {
-          var index = $scope.subscriber.Infos.indexOf(phone, 0);
-          if (index > -1) {
-              $scope.subscriber.Infos.splice(index, 1);
-          }
-      };
-
-      $scope.addDivertPhone = function () {
-          $scope.subscriber.DivertPhones.push({});
-      };
-
-      $scope.deleteDivertPhone = function (phone) {
-          var index = $scope.subscriber.DivertPhones.indexOf(phone, 0);
-          if (index > -1) {
-              $scope.subscriber.DivertPhones.splice(index, 1);
-          }
-      };
-
+      };      
+    
       $scope.getSpecialties = function () {
           $http({
               method: 'GET',

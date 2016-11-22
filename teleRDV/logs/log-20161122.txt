@@ -1,0 +1,2 @@
+2016-11-22 19:38:59.420 +02:00 [Error] 
+Required property 'PhoneType' not found in JSON. Path 'DivertPhones[0]', line 1, position 1640.

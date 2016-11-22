@@ -1,0 +1,32 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row panel-title">
+            <div class="col-xs-9 col-sm-11">{{ title | translate }}</div>
+            <div class="col-xs-3 col-sm-1 text-right">
+                <a href="javascript:void(0)" ng-click="addInfo()"><span class="text-success command"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row" ng-repeat="info in infos">
+            <div class="form-group col-sm-3 col-xs-12">
+                <label>{{ 'Type' | translate }}</label>
+                <select class="selectpicker form-control"
+                        ng-model="info.InfoType"
+                        data-none-selected-text=""
+                        ng-options="item.key as item.value | translate for item in infoTypes"
+                        select-picker>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-group col-sm-8 col-xs-12">
+                <label>{{ 'Value' | translate }}</label>
+                <input type="text" class="form-control" ng-model="info.Value">
+            </div>
+            <div class="form-group col-sm-1 col-xs-12 text-right">
+                <div class="col-sm-12"><label> </label></div>
+                <a href="javascript:void(0)" ng-click="deleteInfo(info)"><span class="text-danger command"><i class="fa fa-minus-circle" aria-hidden="true"></i></span></a>
+            </div>
+        </div>
+    </div>
+</div>

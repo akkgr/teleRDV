@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-.directive("phones", function () {
+.directive("phones", ["enumService", function (enumService) {
     return {
         restrict: 'E',
         scope: {
@@ -10,6 +10,10 @@ angular.module('app')
         },
         templateUrl: '/views/phones.html',
         link: function (scope) {
+
+            enumService.PhoneTypes().then(function (response) {
+                scope.phoneTypes = response.data;
+            });
 
             scope.addPhone = function () {
                 scope.phones.push({});
@@ -23,4 +27,4 @@ angular.module('app')
             };
         }
     };
-});
+}]);

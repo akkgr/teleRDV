@@ -1,0 +1,52 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row panel-title">
+            <div class="col-xs-9 col-sm-11">{{ title | translate }}</div>
+            <div class="col-xs-3 col-sm-1 text-right">
+                <a href="javascript:void(0)" ng-click="addAddress()"><span class="text-success command"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row" ng-repeat="address in addresses">
+            <div class="form-group col-sm-2 col-xs-12">
+                <label>{{ 'Type' | translate }}</label>
+                <select class="selectpicker form-control"
+                        ng-model="address.AddressType"
+                        data-none-selected-text=""
+                        ng-options="item.key as item.value | translate for item in addressTypes"
+                        select-picker>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-group col-sm-2 col-xs-12">
+                <label>{{ 'Area' | translate }}</label>
+                <input type="text" class="form-control" ng-model="address.Area">
+            </div>
+            <div class="form-group col-sm-2 col-xs-12">
+                <label>{{ 'Street' | translate }}</label>
+                <input type="text" class="form-control" ng-model="address.Street">
+            </div>
+            <div class="form-group col-sm-2 col-xs-12">
+                <label>{{ 'Number' | translate }}</label>
+                <input type="text" class="form-control" ng-model="address.StreetNumber">
+            </div>
+            <div class="form-group col-sm-2 col-xs-12">
+                <label>{{ 'PostalCode' | translate }}</label>
+                <input type="text" class="form-control" ng-model="address.PostalCode">
+            </div>
+            <div class="form-group col-sm-2 col-xs-12">
+                <label>{{ 'Floor' | translate }}</label>
+                <input type="text" class="form-control" ng-model="address.Floor">
+            </div>
+            <div class="form-group col-sm-11 col-xs-12">
+                <label>{{ 'Directions' | translate }}</label>
+                <input type="text" class="form-control" ng-model="address.Directions">
+            </div>
+            <div class="form-group col-sm-1 col-xs-12 text-right">
+                <div class="col-sm-12"><label> </label></div>
+                <a href="javascript:void(0)" ng-click="deleteAddress(address)"><span class="text-danger command"><i class="fa fa-minus-circle" aria-hidden="true"></i></span></a>
+            </div>
+        </div>
+    </div>
+</div>
