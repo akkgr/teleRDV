@@ -193,6 +193,7 @@
     <None Include=".eslintrc.js" />
     <Content Include="app\app.js" />
     <Content Include="app\controllers\callQueue.js" />
+    <Content Include="app\controllers\receiveCall.js" />
     <Content Include="app\controllers\socialSecurityFunds.js" />
     <Content Include="app\controllers\paymanetMethods.js" />
     <Content Include="app\controllers\socialSecurityFund.js" />
@@ -259,6 +260,7 @@
     <Content Include="views\faqs.html" />
     <Content Include="views\infos.html" />
     <Content Include="views\phones.html" />
+    <Content Include="views\receiveCall.html" />
     <Content Include="views\scheduler.html" />
     <Content Include="views\socialsecurityfund.html" />
     <Content Include="views\socialsecurityfunds.html" />
@@ -285,7 +287,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SocialSecurityFundsController.cs" />
     <Compile Include="Controllers\PaymentMethodsController.cs" />
-    <Compile Include="Controllers\CallQueuesController.cs" />
+    <Compile Include="Controllers\PhoneCallController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\CustomExceptionFilterAttribute.cs" />
     <Compile Include="App_Start\Helper.cs" />

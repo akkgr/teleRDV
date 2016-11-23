@@ -1,0 +1,17 @@
+﻿<form-header delete="delete()" save="save()">
+    <i class="fa fa-user-md" aria-hidden="true"></i> {{ 'ReceiveCall' | translate }}
+</form-header>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>{{ 'Line' | translate }}</label>
+            <input type="text" class="form-control" ng-model="callEntry.Line">
+        </div>
+        <button class="btn btn-default" ng-click="startCall()">{{ 'Start' | translate }}</button>
+        <div class="form-group">
+            <label>{{ 'Line' | translate }}</label>
+            <input type="text" class="form-control" ng-model="callEntry.Line">
+        </div>
+    </div>
+</div>

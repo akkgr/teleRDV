@@ -7,11 +7,12 @@ using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
-    public class CallQueuesController : ApiController
+    [RoutePrefix("api/phonecall")]
+    public class PhoneCallController : ApiController
     {
         private readonly Context db;
 
-        public CallQueuesController(Context ctx)
+        public PhoneCallController(Context ctx)
         {
             this.db = ctx;
         }
@@ -69,6 +70,23 @@ namespace teleRDV.Controllers
         {
             await db.CallQueue.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
+        }
+
+        // POST api/values
+        [Route("start/{line}")]
+        [HttpGet]        
+        public async Task<IHttpActionResult> Start(string line)
+        {
+            var user = await db.Users.Find(t => t.UserName == User.Identity.Name).FirstOrDefaultAsync();
+            CallEntry obj = new CallEntry();
+            obj.CallType = CallType.Inbound;
+            obj.Started = DateTime.Now;
+            obj.Status = CallStatus.Pending;
+            obj.UserId = user.Id;
+
+            var sub = await db.Subscribers.Find(t => t.CallNumber == line).FirstOrDefaultAsync();
+
+            return Ok( new { CallEntry = obj, Subscriber = sub });
         }
     }
 }

@@ -75,6 +75,10 @@ angular.module('app')
             templateUrl: 'views/callqueue.html',
             controller: 'CallQueueCtrl'
         }).
+        when('/receivecall', {
+            templateUrl: 'views/receiveCall.html',
+            controller: 'ReceiveCallCtrl'
+        }).
         when('/users', {
             templateUrl: 'views/users.html',
             controller: 'UsersCtrl'
