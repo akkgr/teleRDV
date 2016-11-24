@@ -61,6 +61,15 @@ namespace teleRDV.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Data Found.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are subscribers for this payment method. Payment method cannot be deleted.
         /// </summary>
         internal static string PaymentMethodHasSubscribers {

@@ -9,7 +9,9 @@ function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
     $scope.subscriber = {};
 
     $scope.startCall = function () {
-        $scope.getData();
+        if ($scope.callEntry.Line) {
+            $scope.getData();
+        }
     };
 
     $scope.getData = function () {

@@ -5,16 +5,16 @@
 <div class="row">
     <div class="col-md-12">
         <div class="row">
-            <div class="form-group col-md-8">
+            <div class="form-group col-md-6">
                 <label>{{ 'Line' | translate }}</label>
                 <input type="text" class="form-control" ng-model="callEntry.Line">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
                 <label>{{ 'Start' | translate }}</label>
                 <button class="btn btn-default form-control" ng-click="startCall()" ng-if="!callEntry.Started">...</button>
                 <button class="btn btn-default form-control" ng-if="callEntry.Started">{{ callEntry.Started | date : 'short' }}</button>
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
                 <label>{{ 'Stop' | translate }}</label>
                 <button class="btn btn-default form-control" ng-click="stopCall()" ng-if="!callEntry.Ended">...</button>
                 <button class="btn btn-default form-control" ng-if="callEntry.Ended">{{ callEntry.Ended | date : 'short' }}</button>

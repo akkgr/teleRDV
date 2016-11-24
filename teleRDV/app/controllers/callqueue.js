@@ -10,7 +10,7 @@ angular.module('app')
       $scope.getData = function () {
           $http({
               method: 'GET',
-              url: baseUrl + 'api/callqueues'
+              url: baseUrl + 'api/phonecall'
           }).then(function successCallback(response) {
               $scope.data = response.data;
           }, function errorCallback(response) {
@@ -30,7 +30,7 @@ angular.module('app')
 
           $http({
               method: 'POST',
-              url: 'api/callqueues',
+              url: 'api/phonecall',
               data: $scope.newRow
           }).then(function successCallback(response) {
               $scope.newRow = response.data;

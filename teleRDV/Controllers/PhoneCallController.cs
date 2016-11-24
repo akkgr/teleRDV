@@ -78,14 +78,20 @@ namespace teleRDV.Controllers
         public async Task<IHttpActionResult> Start(string line)
         {
             var user = await db.Users.Find(t => t.UserName == User.Identity.Name).FirstOrDefaultAsync();
+            var sub = await db.Subscribers.Find(t => t.CallNumber == line).FirstOrDefaultAsync();
+
+            if(sub==null)
+            {
+                return NotFound();
+            }
+
             CallEntry obj = new CallEntry();
+            obj.Line = line;
             obj.CallType = CallType.Inbound;
             obj.Started = DateTime.Now;
             obj.Status = CallStatus.Pending;
             obj.UserId = user.Id;
-
-            var sub = await db.Subscribers.Find(t => t.CallNumber == line).FirstOrDefaultAsync();
-
+            
             return Ok( new { CallEntry = obj, Subscriber = sub });
         }
     }
