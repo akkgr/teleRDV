@@ -6,7 +6,8 @@ angular.module('app')
         restrict: 'E',
         scope: {
             title: '=',
-            faqs: '='
+            faqs: '=',
+            locked: '='
         },
         templateUrl: '/views/faqs.html',
         link: function (scope) {

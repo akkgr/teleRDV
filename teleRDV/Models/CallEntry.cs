@@ -14,7 +14,7 @@ namespace teleRDV.Models
         public string UserId { get; set; }
         public CallStatus Status { get; set; }
         public CallReason Reason { get; set; }
-        public DateTime Ended { get; set; }
+        public DateTime? Ended { get; set; }
         public int Duration { get; set; }
     }
 }

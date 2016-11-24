@@ -2,22 +2,22 @@
     <div class="panel-heading">
         <div class="row panel-title">
             <div class="col-xs-9 col-sm-11">{{ title | translate }}</div>
-            <div class="col-xs-3 col-sm-1 text-right">
+            <div class="col-xs-3 col-sm-1 text-right" ng-if="!locked">
                 <a href="javascript:void(0)" ng-click="addFaq()"><span class="text-success command"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
             </div>
         </div>
     </div>
     <div class="panel-body">
         <div class="row" ng-repeat="faq in faqs">
-            <div class="form-group col-sm-5 col-xs-12">
+            <div class="form-group col-xs-12" ng-class="{'col-sm-6':locked, 'col-sm-5':!locked}">
                 <label>{{ 'Question' | translate }}</label>
-                <textarea class="form-control" ng-model="faq.Question"></textarea>                
+                <textarea class="form-control" ng-model="faq.Question" ng-disabled="locked"></textarea>                
             </div>
             <div class="form-group col-sm-6 col-xs-12">
                 <label>{{ 'Answer' | translate }}</label>
-                <textarea class="form-control" ng-model="faq.Answer"></textarea>
+                <textarea class="form-control" ng-model="faq.Answer" ng-disabled="locked"></textarea>
             </div>
-            <div class="form-group col-sm-1 col-xs-12 text-right">
+            <div class="form-group col-sm-1 col-xs-12 text-right" ng-if="!locked">
                 <div class="col-sm-12"><label> </label></div>
                 <a href="javascript:void(0)" ng-click="deleteFaq(faq)"><span class="text-danger command"><i class="fa fa-minus-circle" aria-hidden="true"></i></span></a>
             </div>

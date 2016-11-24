@@ -6,7 +6,7 @@ angular.module('app')
 function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
 
     $scope.callEntry = {};
-    $scope.callEntry = {};
+    $scope.subscriber = {};
 
     $scope.startCall = function () {
         $scope.getData();
@@ -17,7 +17,8 @@ function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
             method: 'GET',
             url: baseUrl + 'api/phonecall/start/' + $scope.callEntry.Line
         }).then(function successCallback(response) {
-            $scope.callEntry = response.data;            
+            $scope.callEntry = response.data.CallEntry;
+            $scope.subscriber = response.data.Subscriber;
         }, function errorCallback(response) {
             if (response.status === -1) {
                 swal("Error", "Server unavailable!", "error");
