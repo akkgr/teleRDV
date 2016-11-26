@@ -17,8 +17,8 @@
             </div>
             <div class="form-group col-md-3">
                 <label>{{ 'Stop' | translate }}</label>
-                <button class="btn btn-default form-control" ng-click="stopCall()" ng-if="!callEntry.Ended">...</button>
-                <button class="btn btn-default form-control" ng-if="callEntry.Ended">{{ callEntry.Ended | date : 'short' }}</button>
+                <button class="btn btn-default btn-block" ng-click="stopCall()" ng-if="!callEntry.Ended">...</button>
+                <button class="btn btn-default btn-block" ng-if="callEntry.Ended">{{ callEntry.Ended | date : 'short' }}</button>
             </div>
         </div>
 
@@ -38,8 +38,10 @@
                             <label>{{ 'CallAnswer' | translate }}</label>
                             <textarea class="form-control" ng-model="subscriber.CallAnswer" disabled></textarea>
                         </div>
-                        <div class="pull-right">
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" data-backdrop="static">{{ 'FAQs' | translate }}</button>
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-8">
+                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal" data-backdrop="static">{{ 'FAQs' | translate }}</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,7 +50,13 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {{ 'Person' | translate }}
+                        <div class="row panel-title">
+                            <div class="col-xs-7 col-sm-9">{{ 'Person' | translate }}</div>
+                            <div class="col-xs-5 col-sm-3 text-right">
+                                <a href="javascript:void(0)" ng-click="addDevice()"><span class="text-success command"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                                <a href="javascript:void(0)" ng-click="findDevice()"><span style="padding-left:20px" class="text-success command"><i class="fa fa-search" aria-hidden="true"></i></span></a>
+                            </div>
+                        </div>                        
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
@@ -59,12 +67,22 @@
                             <label>{{ 'Phones' | translate }}</label>
                             <textarea class="form-control" ng-model="callEntry.Person.PhonesInfo" disabled></textarea>
                         </div>
-                        <div class="pull-left">
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1" data-backdrop="static">{{ 'Card' | translate }}</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal2" data-backdrop="static">{{ 'Appointments' | translate }}</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal3" data-backdrop="static">{{ 'NewAppointment' | translate }}</button>
+                            </div>                            
                         </div>
-                        <div class="pull-right">                            
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" data-backdrop="static">{{ 'Appointments' | translate }}</button>
-                        </div>
+                        <!--<div class="row">                            
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal2" data-backdrop="static">{{ 'Appointments' | translate }}</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal1" data-backdrop="static">{{ 'Card' | translate }}</button>
+                            </div>
+                        </div>-->                            
                     </div>
                 </div>
             </div>
@@ -85,13 +103,13 @@
 </div>
 
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">        
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{{ 'Person' | translate }}</h4>
             </div>
-            <div class="modal-body">                
+            <div class="modal-body">
                 <person person="callEntry.Person"></person>
             </div>
         </div>
@@ -106,7 +124,21 @@
                 <h4 class="modal-title" id="myModalLabel">{{ 'Appointments' | translate }}</h4>
             </div>
             <div class="modal-body">
-                <appointment appointment="callEntry.Person"></appointment>
+                <appointments appointments="callEntry.Person.Appointments"></appointments>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ 'Appointment' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+                <appointment appointment="callEntry.Person.Appointments"></appointment>
             </div>
         </div>
     </div>

@@ -1,13 +1,13 @@
 ﻿'use strict';
 
 angular.module('app')
-.directive("appointments", ["enumService", function (enumService) {
+.directive("appointment", ["enumService", function (enumService) {
     return {
         restrict: 'E',
         scope: {
-            appointments: '='
+            appointment: '='
         },
-        templateUrl: '/views/appointments.html',
+        templateUrl: '/views/appointment.html',
         link: function (scope) {
             
         }

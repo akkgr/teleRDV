@@ -204,6 +204,7 @@
     <Content Include="app\controllers\user.js" />
     <Content Include="app\controllers\users.js" />
     <Content Include="app\directives\addresses.js" />
+    <Content Include="app\directives\appointment.js" />
     <Content Include="app\directives\faqs.js" />
     <Content Include="app\directives\infos.js" />
     <Content Include="app\directives\appointments.js" />
@@ -257,6 +258,7 @@
     <Content Include="scripts\app.js" />
     <Content Include="scripts\vendor.js" />
     <Content Include="views\addresses.html" />
+    <Content Include="views\appointment.html" />
     <Content Include="views\appointments.html" />
     <Content Include="views\calendar.html" />
     <Content Include="views\callqueue.html" />

@@ -33,3 +33,17 @@ The Line field is required.
 The UserId field is required.
 2016-11-26 16:54:25.617 +02:00 [Error] 
 The UserId field is required.
+2016-11-26 19:32:22.170 +02:00 [Error] 
+The CallNumber field is required.
+The FirstName field is required.
+At least an address is required
+2016-11-26 19:32:47.531 +02:00 [Error] 
+The CallNumber field is required.
+2016-11-26 19:32:57.372 +02:00 [Error] A write operation resulted in an error.
+  E11000 duplicate key error collection: teleRDV.Subscribers index: Phones.Value_1 dup key: { : "699" }
+A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: teleRDV.Subscribers index: Phones.Value_1 dup key: { : "699" }
+2016-11-26 19:33:08.681 +02:00 [Error] A write operation resulted in an error.
+  E11000 duplicate key error collection: teleRDV.Subscribers index: Phones.Value_1 dup key: { : "699" }
+A bulk write operation resulted in one or more errors.
+  E11000 duplicate key error collection: teleRDV.Subscribers index: Phones.Value_1 dup key: { : "699" }

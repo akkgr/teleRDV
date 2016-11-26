@@ -47,6 +47,8 @@ namespace teleRDV.Models
             Users.Indexes.CreateOneAsync(Builders<User>.IndexKeys.Ascending(d => d.UserName), options);
             Users.Indexes.CreateOneAsync(Builders<User>.IndexKeys.Ascending(d => d.Email), options);
             Roles.Indexes.CreateOneAsync(Builders<Role>.IndexKeys.Ascending(d => d.Name), options);
+            Subscribers.Indexes.CreateOneAsync(Builders<Subscriber>.IndexKeys.Ascending("Phones.Value"),options);
+            People.Indexes.CreateOneAsync(Builders<Person>.IndexKeys.Ascending("Phones.Value"), options);
         }
 
         public static void Init()
