@@ -6,12 +6,10 @@ angular.module('app')
         restrict: 'A',
         scope: false,
         link: function (scope, element) {
-
             $timeout(function () {
                 var $el = $(element);
                 $el.selectpicker('refresh');
             });
-                
         }
     };
 }]);

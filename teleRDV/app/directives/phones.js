@@ -10,7 +10,6 @@ angular.module('app')
         },
         templateUrl: '/views/phones.html',
         link: function (scope) {
-
             enumService.PhoneTypes().then(function (response) {
                 scope.phoneTypes = response.data;
             });

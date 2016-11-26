@@ -10,7 +10,6 @@ angular.module('app')
         },
         templateUrl: '/views/addresses.html',
         link: function (scope) {
-
             enumService.AddressTypes().then(function (response) {
                 scope.addressTypes = response.data;
             });

@@ -5,12 +5,27 @@ angular.module('app')
 .controller('CallQueueCtrl', ['$scope', '$http', '$location', 'baseUrl',
   function ($scope, $http, $location, baseUrl) {
 
-      $scope.newRow = {};
+      var apiUrl = baseUrl + 'api/callentries/';
+      
+      $scope.getNewRow = function () {
+          $http({
+              method: 'GET',
+              url: apiUrl + "new"
+          }).then(function successCallback(response) {
+              $scope.newRow = response.data;
+          }, function errorCallback(response) {
+              if (response.status === -1) {
+                  swal("Error", "Server unavailable!", "error");
+              } else {
+                  swal("Error", response.statusText + ". " + response.data.Message, "error");
+              }
+          });
+      };
 
       $scope.getData = function () {
           $http({
               method: 'GET',
-              url: baseUrl + 'api/phonecall'
+              url: apiUrl
           }).then(function successCallback(response) {
               $scope.data = response.data;
           }, function errorCallback(response) {
@@ -27,25 +42,24 @@ angular.module('app')
       };
 
       $scope.save = function () {
-
           $http({
               method: 'POST',
-              url: 'api/phonecall',
+              url: apiUrl,
               data: $scope.newRow
           }).then(function successCallback(response) {
               $scope.newRow = response.data;
               swal("Success", "Call successfully saved.", "success");
               $scope.data.push($scope.newRow);
-              $scope.newRow = {};
+              $scope.getNewRow();
           }, function errorCallback(response) {
               if (response.status === -1) {
                   swal("Error", "Server unavailable!", "error");
               } else {
                   swal("Error", response.statusText + ". " + response.data.Message, "error");
               }
-          });          
+          });
       }
-                              
-      $scope.getData();
 
+      $scope.getNewRow();
+      $scope.getData();
   }]);

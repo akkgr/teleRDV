@@ -1,9 +1,10 @@
-﻿<form-header delete="delete()" save="save()">
+﻿<form-header>
     <i class="fa fa-user-md" aria-hidden="true"></i> {{ 'ReceiveCall' | translate }}
 </form-header>
 
 <div class="row">
     <div class="col-md-12">
+
         <div class="row">
             <div class="form-group col-md-6">
                 <label>{{ 'Line' | translate }}</label>
@@ -20,17 +21,93 @@
                 <button class="btn btn-default form-control" ng-if="callEntry.Ended">{{ callEntry.Ended | date : 'short' }}</button>
             </div>
         </div>
+
         <div class="row">
-            <div class="form-group col-md-6">
-                <label>{{ 'FullName' | translate }}</label>
-                <input type="text" class="form-control" ng-model="subscriber.FullName" disabled>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ 'Subscriber' | translate }}
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>{{ 'FullName' | translate }}</label>
+                            <input type="text" class="form-control" ng-model="subscriber.FullName" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'CallAnswer' | translate }}</label>
+                            <textarea class="form-control" ng-model="subscriber.CallAnswer" disabled></textarea>
+                        </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" data-backdrop="static">{{ 'FAQs' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <label>{{ 'CallAnswer' | translate }}</label>
-                <textarea class="form-control" ng-model="subscriber.CallAnswer" disabled></textarea>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{ 'Person' | translate }}
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>{{ 'FullName' | translate }}</label>
+                            <input type="text" class="form-control" ng-model="callEntry.Person.FullName" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'Phones' | translate }}</label>
+                            <textarea class="form-control" ng-model="callEntry.Person.PhonesInfo" disabled></textarea>
+                        </div>
+                        <div class="pull-left">
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1" data-backdrop="static">{{ 'Card' | translate }}</button>
+                        </div>
+                        <div class="pull-right">                            
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" data-backdrop="static">{{ 'Appointments' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="pull-right" style="margin-right:20px;margin-top:10px"><button type="button" data-dismiss="modal" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+                <faqs title="'FAQ'" faqs="subscriber.Faqs" locked="true"></faqs>
             </div>
         </div>
     </div>
 </div>
 
-<faqs title="'FAQ'" faqs="subscriber.Faqs" locked="true"></faqs>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">        
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ 'Person' | translate }}</h4>
+            </div>
+            <div class="modal-body">                
+                <person person="callEntry.Person"></person>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ 'Appointments' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+                <appointment appointment="callEntry.Person"></appointment>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,21 +23,26 @@ namespace teleRDV.Models
 
         public string UserId { get; set; }
 
+        public User User { get; set; }
+
         [Required]
         public string LastName { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
         public string Company { get; set; }
 
         public string CallAnswer { get; set; }
 
+        public string SpecialtyId { get; set; }
+
         public Specialty Specialty { get; set; }
 
-        //[EnsureMinimumElements(1, ErrorMessage = "At least an address is required")]
+        [EnsureMinimumElements(1, ErrorMessage = "At least an address is required")]
         public IList<Address> Addresses { get; set; }
 
-        //[EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
+        [EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
         public IList<Phone> Phones { get; set; }
 
         public IList<Info> Infos { get; set; }
@@ -69,13 +74,16 @@ namespace teleRDV.Models
         public string MessagesInfo { get; set; }
 
         public Schedule MessagesSchedule { get; set; }
-
-        //[EnsureMinimumElements(1, ErrorMessage = "At least a phone is required")]
+        
         public IList<Phone> DivertPhones { get; set; }
 
         public string DivertLine { get; set; }
 
+        public IList<string> PaymentMethodIds { get; set; }
+
         public IList<PaymentMethod> PaymentMethods { get; set; }
+
+        public IList<string> SocialSecurityFundIds { get; set; }
 
         public IList<SocialSecurityFund> SocialSecurityFunds { get; set; }
 

@@ -5,10 +5,12 @@ angular.module('app')
 .controller('SpecialtiesCtrl', ['$scope', '$http', '$location', 'baseUrl',
   function ($scope, $http, $location, baseUrl) {
 
+      var apiUrl = baseUrl + 'api/specialties/';
+
       $scope.getData = function () {
           $http({
               method: 'GET',
-              url: baseUrl + 'api/specialties'
+              url: apiUrl
           }).then(function successCallback(response) {
               $scope.specialties = response.data;
           }, function errorCallback(response) {
@@ -35,5 +37,4 @@ angular.module('app')
       };
 
       $scope.getData();
-
   }]);

@@ -1,6 +1,5 @@
 using AspNet.Identity.MongoDB;
 using Microsoft.AspNet.Identity;
-using MongoDB.Bson.Serialization.Attributes;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -8,16 +7,12 @@ namespace teleRDV.Models
 {
     public class User : IdentityUser
     {
-        [BsonIgnore]
         public string Password { get; set; }
 
-        [BsonIgnore]
         public string OldPassword { get; set; }
 
-        [BsonIgnore]
         public string NewPassword { get; set; }
 
-        [BsonIgnore]
         public string ConfirmPassword { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

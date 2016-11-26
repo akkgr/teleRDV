@@ -2,8 +2,10 @@
 
 /* Controllers */
 angular.module('app')
-.controller('ReceiveCallCtrl', ['$scope', '$http', '$routeParams', 'baseUrl', 'enumService', '$location',
-function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
+.controller('ReceiveCallCtrl', ['$scope', '$http', '$routeParams', 'baseUrl', '$location',
+function ($scope, $http, $routeParams, baseUrl, $location) {
+
+    var apiUrl = baseUrl + 'api/callentries/start/';
 
     $scope.callEntry = {};
     $scope.subscriber = {};
@@ -17,7 +19,7 @@ function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
     $scope.getData = function () {
         $http({
             method: 'GET',
-            url: baseUrl + 'api/phonecall/start/' + $scope.callEntry.Line
+            url: apiUrl + $scope.callEntry.Line
         }).then(function successCallback(response) {
             $scope.callEntry = response.data.CallEntry;
             $scope.subscriber = response.data.Subscriber;
@@ -29,5 +31,4 @@ function ($scope, $http, $routeParams, baseUrl, enumService, $location) {
             }
         });
     };
-    
 }]);

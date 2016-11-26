@@ -97,7 +97,6 @@ angular.module('app')
     cfpLoadingBarProvider.includeSpinner = false;
 }]);
 
-
 angular.module('app')
 .config(['tmhDynamicLocaleProvider', function (tmhDynamicLocaleProvider) {
     tmhDynamicLocaleProvider.localeLocationPattern('scripts/angular-locale_{{locale}}.js');

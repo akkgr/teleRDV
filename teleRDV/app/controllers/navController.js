@@ -4,7 +4,6 @@
 angular.module('app')
 .controller('NavCtrl', ['$scope', '$translate', 'authService', '$location', 'localStorageService', 'tmhDynamicLocale', 'localeService', '$http', 'baseUrl', '$window',
 function ($scope, $translate, authService, $location, localStorageService, tmhDynamicLocale, localeService, $http, baseUrl, $window) {
-
     authService.fillAuthData();
     $scope.authentication = authService.authentication;
 
@@ -59,5 +58,4 @@ function ($scope, $translate, authService, $location, localStorageService, tmhDy
                 }
             });
     };
-
 }]);

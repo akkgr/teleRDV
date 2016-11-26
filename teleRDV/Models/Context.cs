@@ -22,11 +22,10 @@ namespace teleRDV.Models
             Specialties = database.GetCollection<Specialty>("Specialties");
             PaymentMethods = database.GetCollection<PaymentMethod>("PaymentMethods");
             SocialSecurityFunds = database.GetCollection<SocialSecurityFund>("SocialSecurityFunds");
-            CallReasons = database.GetCollection<CallReason>("CallReasons");
-            CallQueue = database.GetCollection<CallEntry>("CallQueue");
-            CallHistory = database.GetCollection<CallEntry>("CallHistory");
+            CallEntries = database.GetCollection<CallEntry>("CallEntries");
             People = database.GetCollection<Person>("People");
             Appointments = database.GetCollection<Appointment>("Appointments");
+
             EnsureIndexes();
         }
 
@@ -35,10 +34,8 @@ namespace teleRDV.Models
         public IMongoCollection<Subscriber> Subscribers { get; set; }
         public IMongoCollection<Specialty> Specialties { get; set; }
         public IMongoCollection<PaymentMethod> PaymentMethods { get; set; }
-        public IMongoCollection<SocialSecurityFund> SocialSecurityFunds { get; set; }
-        public IMongoCollection<CallReason> CallReasons { get; set; }
-        public IMongoCollection<CallEntry> CallQueue { get; set; }
-        public IMongoCollection<CallEntry> CallHistory { get; set; }
+        public IMongoCollection<SocialSecurityFund> SocialSecurityFunds { get; set; }        
+        public IMongoCollection<CallEntry> CallEntries { get; set; }
         public IMongoCollection<Person> People { get; set; }
         public IMongoCollection<Appointment> Appointments { get; set; }
 
@@ -60,6 +57,46 @@ namespace teleRDV.Models
                 cm.SetIdMember(cm.GetMemberMap(c => c.Id)
                     .SetSerializer(new StringSerializer(BsonType.ObjectId))
                     .SetIdGenerator(StringObjectIdGenerator.Instance));
+            });
+
+            BsonClassMap.RegisterClassMap<Appointment>(cm =>
+            {
+                cm.AutoMap();
+                cm.UnmapMember(c => c.Subscriber);
+                cm.UnmapMember(c => c.Person);
+                cm.UnmapMember(c => c.User);
+            });
+
+            BsonClassMap.RegisterClassMap<Subscriber>(cm =>
+            {
+                cm.AutoMap();
+                cm.UnmapMember(c => c.User);
+                cm.UnmapMember(c => c.Specialty);
+                cm.UnmapMember(c => c.PaymentMethods);
+                cm.UnmapMember(c => c.SocialSecurityFunds);
+            });
+
+            BsonClassMap.RegisterClassMap<Person>(cm =>
+            {
+                cm.AutoMap();
+                cm.UnmapMember(c => c.User);
+                cm.UnmapMember(c => c.Appointments);
+            });
+
+            BsonClassMap.RegisterClassMap<User>(cm =>
+            {
+                cm.AutoMap();
+                cm.UnmapMember(c => c.Password);
+                cm.UnmapMember(c => c.OldPassword);
+                cm.UnmapMember(c => c.NewPassword);
+                cm.UnmapMember(c => c.ConfirmPassword);
+            });
+
+            BsonClassMap.RegisterClassMap<CallEntry>(cm =>
+            {
+                cm.AutoMap();
+                cm.UnmapMember(c => c.User);
+                cm.UnmapMember(c => c.Person);
             });
         }
     }

@@ -4,7 +4,6 @@
 angular.module('app')
 .controller('UserCtrl', ['$scope', '$http', '$routeParams', 'baseUrl', '$location',
 function ($scope, $http, $routeParams, baseUrl, $location) {
-
     $scope.getRoles = function () {
         $http({
             method: 'GET',
@@ -118,5 +117,4 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
 
     $scope.getRoles();
     $scope.getData();
-
 }]);

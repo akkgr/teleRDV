@@ -7,12 +7,12 @@ using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
-    [RoutePrefix("api/phonecall")]
-    public class PhoneCallController : ApiController
+    [RoutePrefix("api/callentries")]
+    public class CallEntriesController : ApiController
     {
         private readonly Context db;
 
-        public PhoneCallController(Context ctx)
+        public CallEntriesController(Context ctx)
         {
             this.db = ctx;
         }
@@ -21,17 +21,26 @@ namespace teleRDV.Controllers
         [HttpGet]
         public async Task<IEnumerable<CallEntry>> Get()
         {
-            return await db.CallQueue.Find(t => true).ToListAsync();
+            return await db.CallEntries.Find(t => true).ToListAsync();
         }
 
         // GET api/values/5
         [HttpGet]
         public async Task<IHttpActionResult> Get(string id)
         {
+            var user = await db.Users.Find(t => t.UserName == User.Identity.Name).FirstOrDefaultAsync();
             var obj = new CallEntry();
-            if (id != "new")
+            if (id == "new")
             {
-                obj = await db.CallQueue.Find(t => t.Id == id).FirstOrDefaultAsync();
+                obj.CallType = CallType.Inbound;
+                obj.Started = DateTime.Now;
+                obj.Status = CallStatus.Pending;
+                obj.Reason = CallReason.Question;
+                obj.UserId = user.Id;
+            }
+            else
+            {
+                obj = await db.CallEntries.Find(t => t.Id == id).FirstOrDefaultAsync();
                 if (obj == null)
                 {
                     return this.NotFound();
@@ -45,7 +54,7 @@ namespace teleRDV.Controllers
         public async Task<IHttpActionResult> Post([FromBody]CallEntry value)
         {
             value.Started = DateTime.Now;
-            await db.CallQueue.InsertOneAsync(value);
+            await db.CallEntries.InsertOneAsync(value);
             return this.Ok(value);
         }
 
@@ -53,14 +62,14 @@ namespace teleRDV.Controllers
         [HttpPut]
         public async Task<IHttpActionResult> Put(string id, [FromBody]CallEntry value)
         {
-            var obj = await db.CallQueue.Find(t => t.Id == id).FirstOrDefaultAsync();
+            var obj = await db.CallEntries.Find(t => t.Id == id).FirstOrDefaultAsync();
             if (obj == null)
             {
                 return this.NotFound();
             }
 
             var query = Builders<CallEntry>.Filter.Eq(e => e.Id, id);
-            await db.CallQueue.ReplaceOneAsync(query, value);
+            await db.CallEntries.ReplaceOneAsync(query, value);
             return this.Ok(value);
         }
 
@@ -68,7 +77,7 @@ namespace teleRDV.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(string id)
         {
-            await db.CallQueue.FindOneAndDeleteAsync(t => t.Id == id);
+            await db.CallEntries.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
         }
 
@@ -90,6 +99,8 @@ namespace teleRDV.Controllers
             obj.CallType = CallType.Inbound;
             obj.Started = DateTime.Now;
             obj.Status = CallStatus.Pending;
+            obj.Reason = CallReason.Question;
+            obj.Person = new Person();
             obj.UserId = user.Id;
             
             return Ok( new { CallEntry = obj, Subscriber = sub });

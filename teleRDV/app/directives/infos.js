@@ -10,7 +10,6 @@ angular.module('app')
         },
         templateUrl: '/views/infos.html',
         link: function (scope) {
-
             enumService.InfoTypes().then(function (response) {
                 scope.infoTypes = response.data;
             });

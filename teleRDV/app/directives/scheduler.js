@@ -9,7 +9,6 @@ angular.module('app')
         },
         templateUrl: '/views/scheduler.html',
         link: function (scope) {
-
             function isOpen() {
                 var open = [];
                 for (var n = 0; n < 7; n++) {
@@ -45,7 +44,6 @@ angular.module('app')
             };
 
             scope.popover = function (n, m, z) {
-
                 if (scope.dynamicPopover.z == 0) {
                     scope.schedule.DayEntries[scope.dynamicPopover.n].TimeEntries[scope.dynamicPopover.m].StartHour = scope.dynamicPopover.hour;
                     scope.schedule.DayEntries[scope.dynamicPopover.n].TimeEntries[scope.dynamicPopover.m].StartMinute = scope.dynamicPopover.minute;
@@ -55,8 +53,8 @@ angular.module('app')
                     scope.schedule.DayEntries[scope.dynamicPopover.n].TimeEntries[scope.dynamicPopover.m].EndHour = scope.dynamicPopover.hour;
                     scope.schedule.DayEntries[scope.dynamicPopover.n].TimeEntries[scope.dynamicPopover.m].EndMinute = scope.dynamicPopover.minute;
                 }
-                
-                if(z==0) {
+
+                if (z == 0) {
                     scope.dynamicPopover.hour = scope.schedule.DayEntries[n].TimeEntries[m].StartHour;
                     scope.dynamicPopover.minute = scope.schedule.DayEntries[n].TimeEntries[m].StartMinute;
                 }

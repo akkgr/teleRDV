@@ -1,4 +1,5 @@
-﻿namespace teleRDV.Models
+﻿
+namespace teleRDV.Models
 {
     public abstract class BaseModel
     {

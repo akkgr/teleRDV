@@ -5,10 +5,12 @@ angular.module('app')
 .controller('SubscribersCtrl', ['$scope', '$http', '$location', 'baseUrl',
   function ($scope, $http, $location, baseUrl) {
 
+      var apiUrl = baseUrl + 'api/subscribers/';
+
       $scope.getData = function () {
           $http({
               method: 'GET',
-              url: baseUrl + 'api/subscribers'
+              url: apiUrl
           }).then(function successCallback(response) {
               $scope.subscribers = response.data;
           }, function errorCallback(response) {
@@ -37,7 +39,7 @@ angular.module('app')
       $scope.getSpecialties = function () {
           $http({
               method: 'GET',
-              url: baseUrl + 'api/specialties/'
+              url: apiUrl
           }).then(function successCallback(response) {
               $scope.specialties = response.data;
               $('.selectpicker').selectpicker('refresh');
@@ -52,5 +54,4 @@ angular.module('app')
 
       $scope.getSpecialties();
       $scope.getData();
-
   }]);

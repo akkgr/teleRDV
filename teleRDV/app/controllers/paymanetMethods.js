@@ -5,10 +5,12 @@ angular.module('app')
 .controller('PaymentMethodsCtrl', ['$scope', '$http', '$location', 'baseUrl',
   function ($scope, $http, $location, baseUrl) {
 
+      var apiUrl = baseUrl + 'api/paymentmethods/'
+
       $scope.getData = function () {
           $http({
               method: 'GET',
-              url: baseUrl + 'api/paymentmethods'
+              url: apiUrl
           }).then(function successCallback(response) {
               $scope.paymentmethods = response.data;
           }, function errorCallback(response) {
@@ -35,5 +37,4 @@ angular.module('app')
       };
 
       $scope.getData();
-
   }]);

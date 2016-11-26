@@ -2,9 +2,9 @@
 
 angular.module('app')
     .filter('numberFixedLen', function () {
-        return function (n, len) {
+        return function (n, l) {
             var num = parseInt(n, 10);
-            len = parseInt(len, 10);
+            var len = parseInt(l, 10);
             if (isNaN(num) || isNaN(len)) {
                 return n;
             }

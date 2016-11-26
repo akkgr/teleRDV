@@ -1,7 +1,8 @@
 ﻿namespace teleRDV.Models
 {
-    public class CallReason : BaseModel
+    public enum CallReason
     {
-        public string Title { get; set; }
+        Question,
+        Appointment
     }
 }

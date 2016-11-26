@@ -1,0 +1,22 @@
+﻿<div class="form-group">
+    <label>{{ 'FullName' | translate }}</label>
+    <input type="text" class="form-control" ng-model="callEntry.Person.FullName">
+</div>
+<div class="form-group">
+    <label>{{ 'FirstName' | translate }}</label>
+    <input type="text" class="form-control" ng-model="callEntry.Person.FirstName">
+</div>
+<div class="form-group">
+    <label>{{ 'FatherName' | translate }}</label>
+    <input type="text" class="form-control" ng-model="callEntry.Person.FatherName">
+</div>
+<div class="form-group">
+    <label>{{ 'BirthDate' | translate }}</label>
+    <my-date-input date-time="callEntry.Person.BirthDate"></my-date-input>
+</div>
+
+<phones title="'Phones'" phones="subscriber.Phones"></phones>
+
+<addresses title="'Addresses'" addresses="subscriber.Addresses"></addresses>
+
+<infos title="'OtherInfo'" infos="subscriber.Infos"></infos>

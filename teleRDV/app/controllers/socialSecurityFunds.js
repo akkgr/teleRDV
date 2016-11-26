@@ -5,10 +5,12 @@ angular.module('app')
 .controller('SocialSecurityFundsCtrl', ['$scope', '$http', '$location', 'baseUrl',
   function ($scope, $http, $location, baseUrl) {
 
+      var apiUrl = baseUrl + 'api/socialsecurityfunds/';
+
       $scope.getData = function () {
           $http({
               method: 'GET',
-              url: baseUrl + 'api/socialsecurityfunds'
+              url: apiUrl
           }).then(function successCallback(response) {
               $scope.items = response.data;
           }, function errorCallback(response) {
@@ -35,5 +37,4 @@ angular.module('app')
       };
 
       $scope.getData();
-
   }]);

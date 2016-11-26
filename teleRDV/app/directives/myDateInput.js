@@ -21,7 +21,7 @@ angular.module('app')
             scope.popup = {
                 opened: false,
                 options: {
-                    showWeeks: false 
+                    showWeeks: false
                 }
             };
 

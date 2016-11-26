@@ -48,8 +48,8 @@
       <HintPath>..\packages\AspNet.Identity.MongoDB.2.0.8\lib\net45\AspNet.Identity.MongoDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.2.0\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -206,6 +206,8 @@
     <Content Include="app\directives\addresses.js" />
     <Content Include="app\directives\faqs.js" />
     <Content Include="app\directives\infos.js" />
+    <Content Include="app\directives\appointments.js" />
+    <Content Include="app\directives\person.js" />
     <Content Include="app\directives\phones.js" />
     <Content Include="app\directives\scheduler.js" />
     <Content Include="app\directives\selectPicker.js" />
@@ -255,10 +257,12 @@
     <Content Include="scripts\app.js" />
     <Content Include="scripts\vendor.js" />
     <Content Include="views\addresses.html" />
+    <Content Include="views\appointments.html" />
     <Content Include="views\calendar.html" />
     <Content Include="views\callqueue.html" />
     <Content Include="views\faqs.html" />
     <Content Include="views\infos.html" />
+    <Content Include="views\person.html" />
     <Content Include="views\phones.html" />
     <Content Include="views\receiveCall.html" />
     <Content Include="views\scheduler.html" />
@@ -287,7 +291,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SocialSecurityFundsController.cs" />
     <Compile Include="Controllers\PaymentMethodsController.cs" />
-    <Compile Include="Controllers\PhoneCallController.cs" />
+    <Compile Include="Controllers\CallEntriesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\CustomExceptionFilterAttribute.cs" />
     <Compile Include="App_Start\Helper.cs" />

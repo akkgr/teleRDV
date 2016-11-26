@@ -4,7 +4,7 @@
 angular.module('app')
 .controller('CalendarCtrl', ['$scope', '$http', '$location', 'baseUrl',
   function ($scope, $http, $location, baseUrl) {
-
+      
       $scope.getData = function () {
           $http({
               method: 'GET',
@@ -52,5 +52,4 @@ angular.module('app')
 
       $scope.getSpecialties();
       $scope.getData();
-
   }]);

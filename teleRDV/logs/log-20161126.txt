@@ -1,0 +1,35 @@
+2016-11-26 11:26:20.752 +02:00 [Error] 
+The Id field is required.
+2016-11-26 11:35:16.640 +02:00 [Error] 'new' is not a valid 24 digit hex string.
+2016-11-26 11:43:40.794 +02:00 [Error] 'ba58a212-caed-432a-a328-6fedc15b8060' is not a valid 24 digit hex string.
+2016-11-26 11:52:20.386 +02:00 [Error] Element 'Specialty' does not match any field or property of class teleRDV.Models.Subscriber.
+2016-11-26 12:26:03.271 +02:00 [Error] Element 'Specialty' does not match any field or property of class teleRDV.Models.Subscriber.
+2016-11-26 12:26:42.325 +02:00 [Error] Element 'Specialty' does not match any field or property of class teleRDV.Models.Subscriber.
+2016-11-26 12:28:06.655 +02:00 [Error] 
+The CallNumber field is required.
+The LastName field is required.
+The FirstName field is required.
+At least an address is required
+At least a phone is required
+2016-11-26 16:42:48.112 +02:00 [Error] 
+Required property 'CallType' not found in JSON. Path '', line 1, position 14.
+Required property 'Started' not found in JSON. Path '', line 1, position 14.
+Required property 'Status' not found in JSON. Path '', line 1, position 14.
+Required property 'Reason' not found in JSON. Path '', line 1, position 14.
+The UserId field is required.
+2016-11-26 16:43:06.764 +02:00 [Error] 
+Required property 'CallType' not found in JSON. Path '', line 1, position 2.
+Required property 'Started' not found in JSON. Path '', line 1, position 2.
+Required property 'Status' not found in JSON. Path '', line 1, position 2.
+Required property 'Reason' not found in JSON. Path '', line 1, position 2.
+The Line field is required.
+The UserId field is required.
+2016-11-26 16:48:37.121 +02:00 [Error] 
+Required property 'CallType' not found in JSON. Path '', line 1, position 2.
+Required property 'Started' not found in JSON. Path '', line 1, position 2.
+Required property 'Status' not found in JSON. Path '', line 1, position 2.
+Required property 'Reason' not found in JSON. Path '', line 1, position 2.
+The Line field is required.
+The UserId field is required.
+2016-11-26 16:54:25.617 +02:00 [Error] 
+The UserId field is required.

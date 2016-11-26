@@ -1,7 +1,7 @@
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
-namespace crm
+namespace teleRDV
 {
     public class EnsureMinimumElementsAttribute : ValidationAttribute
     {

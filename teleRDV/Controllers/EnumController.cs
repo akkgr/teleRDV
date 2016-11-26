@@ -8,9 +8,9 @@ namespace teleRDV.Controllers
     [RoutePrefix("api/enum")]
     public class EnumController : ApiController
     {
-        [Route("address")]
+        [Route("AddressType")]
         [HttpGet]
-        public IHttpActionResult GetAddress()
+        public IHttpActionResult GetAddressType()
         {
             var enumVals = new List<object>();
 
@@ -26,9 +26,81 @@ namespace teleRDV.Controllers
             return Ok(enumVals);
         }
 
-        [Route("info")]
+        [Route("AppointmentStatus")]
         [HttpGet]
-        public IHttpActionResult GetInfo()
+        public IHttpActionResult GetAppointmentStatus()
+        {
+            var enumVals = new List<object>();
+
+            foreach (var item in Enum.GetValues(typeof(AppointmentStatus)))
+            {
+                enumVals.Add(new
+                {
+                    key = (int)item,
+                    value = item.ToString()
+                });
+            }
+
+            return Ok(enumVals);
+        }
+
+        [Route("CallReason")]
+        [HttpGet]
+        public IHttpActionResult GetCallReason()
+        {
+            var enumVals = new List<object>();
+
+            foreach (var item in Enum.GetValues(typeof(CallReason)))
+            {
+                enumVals.Add(new
+                {
+                    key = (int)item,
+                    value = item.ToString()
+                });
+            }
+
+            return Ok(enumVals);
+        }
+
+        [Route("CallStatus")]
+        [HttpGet]
+        public IHttpActionResult GetCallStatus()
+        {
+            var enumVals = new List<object>();
+
+            foreach (var item in Enum.GetValues(typeof(CallStatus)))
+            {
+                enumVals.Add(new
+                {
+                    key = (int)item,
+                    value = item.ToString()
+                });
+            }
+
+            return Ok(enumVals);
+        }
+
+        [Route("CallType")]
+        [HttpGet]
+        public IHttpActionResult GetCallType()
+        {
+            var enumVals = new List<object>();
+
+            foreach (var item in Enum.GetValues(typeof(CallType)))
+            {
+                enumVals.Add(new
+                {
+                    key = (int)item,
+                    value = item.ToString()
+                });
+            }
+
+            return Ok(enumVals);
+        }
+
+        [Route("InfoType")]
+        [HttpGet]
+        public IHttpActionResult GetInfoType()
         {
             var enumVals = new List<object>();
 
@@ -44,9 +116,9 @@ namespace teleRDV.Controllers
             return Ok(enumVals);
         }
 
-        [Route("phone")]
+        [Route("PhoneType")]
         [HttpGet]
-        public IHttpActionResult GetPhone()
+        public IHttpActionResult GetPhoneType()
         {
             var enumVals = new List<object>();
 
@@ -62,9 +134,9 @@ namespace teleRDV.Controllers
             return Ok(enumVals);
         }
 
-        [Route("weekdays")]
+        [Route("DayOfWeek")]
         [HttpGet]
-        public IHttpActionResult GetWeekDays()
+        public IHttpActionResult GetDayOfWeek()
         {
             var enumVals = new List<object>();
             foreach (var item in Enum.GetValues(typeof(DayOfWeek)))
@@ -77,6 +149,6 @@ namespace teleRDV.Controllers
             }
 
             return Ok(enumVals);
-        }
+        }        
     }
 }
