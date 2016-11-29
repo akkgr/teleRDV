@@ -79,6 +79,24 @@ namespace teleRDV.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Person Has Appointments.
+        /// </summary>
+        internal static string PersonHasAppointments {
+            get {
+                return ResourceManager.GetString("PersonHasAppointments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Person Has Calls.
+        /// </summary>
+        internal static string PersonHasCalls {
+            get {
+                return ResourceManager.GetString("PersonHasCalls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are subscribers for this social security fund. Social security fund cannot be deleted.
         /// </summary>
         internal static string SocialSecurityFundHasSubscribers {

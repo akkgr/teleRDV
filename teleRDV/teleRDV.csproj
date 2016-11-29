@@ -200,11 +200,11 @@
     <Content Include="app\controllers\specialties.js" />
     <Content Include="app\controllers\paymentMethod.js" />
     <Content Include="app\controllers\specialty.js" />
-    <Content Include="app\controllers\calendar.js" />
     <Content Include="app\controllers\user.js" />
     <Content Include="app\controllers\users.js" />
     <Content Include="app\directives\addresses.js" />
     <Content Include="app\directives\appointment.js" />
+    <Content Include="app\directives\calendar.js" />
     <Content Include="app\directives\faqs.js" />
     <Content Include="app\directives\infos.js" />
     <Content Include="app\directives\appointments.js" />
@@ -294,6 +294,7 @@
     <Compile Include="Controllers\SocialSecurityFundsController.cs" />
     <Compile Include="Controllers\PaymentMethodsController.cs" />
     <Compile Include="Controllers\CallEntriesController.cs" />
+    <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\CustomExceptionFilterAttribute.cs" />
     <Compile Include="App_Start\Helper.cs" />

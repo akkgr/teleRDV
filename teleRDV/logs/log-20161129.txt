@@ -1,0 +1,11 @@
+2016-11-29 08:41:10.265 +02:00 [Error] Element 'Specialty' does not match any field or property of class teleRDV.Models.Subscriber.
+2016-11-29 08:41:10.295 +02:00 [Error] Element 'Specialty' does not match any field or property of class teleRDV.Models.Subscriber.
+2016-11-29 08:41:23.614 +02:00 [Error] Element 'Specialty' does not match any field or property of class teleRDV.Models.Subscriber.
+2016-11-29 08:41:23.620 +02:00 [Error] Element 'Specialty' does not match any field or property of class teleRDV.Models.Subscriber.
+2016-11-29 08:42:57.543 +02:00 [Error] 
+The CallNumber field is required.
+At least an address is required
+At least a phone is required
+2016-11-29 09:28:09.183 +02:00 [Error] 'phones.value' is not a valid 24 digit hex string.
+2016-11-29 09:48:07.311 +02:00 [Error] 
+At least a phone is required

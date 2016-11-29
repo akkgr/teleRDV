@@ -1,10 +1,20 @@
-﻿<div class="row">
-    <div class="form-group col-md-6">
-        <label>{{ 'DateTime' | translate }}</label>
-        <my-date-input date-time="appointment.DateTime"></my-date-input>
-    </div>
-    <div class="form-group col-md-6">
-        <label>{{ 'Remarks' | translate }}</label>
-        <textarea class="form-control" ng-model="appointment.Remarks" ></textarea>
-    </div>
+﻿<div class="table-responsive">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>{{ 'DateTime' | translate }}</th>
+                <th>{{ 'Status' | translate }}</th>
+                <th>{{ 'Remarks' | translate }}</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in appointments | filter:search" ng-class="{'active': row.Id == selectedRow.Id}" ng-click="selectRow(row)">
+                <td>{{row.DateTime}}</td>
+                <td>{{row.Status}}</td>
+                <td>{{row.Remarks}}</td>
+                <td><button class="btn btn-danger"><i class="fa fa-remove" aria-hidden="true"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

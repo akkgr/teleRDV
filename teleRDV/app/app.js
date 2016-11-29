@@ -67,10 +67,6 @@ angular.module('app')
             templateUrl: 'views/socialsecurityfund.html',
             controller: 'SocialSecurityFundCtrl'
         }).
-        when('/calendar', {
-            templateUrl: 'views/calendar.html',
-            controller: 'CalendarCtrl'
-        }).
         when('/callqueue', {
             templateUrl: 'views/callqueue.html',
             controller: 'CallQueueCtrl'

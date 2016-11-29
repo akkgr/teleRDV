@@ -22,14 +22,14 @@ namespace teleRDV.Models
 
         public string PersonId { get; set; }
 
-        public Person Person { get; set; }
+        public virtual Person Person { get; set; }
 
         public string Remarks { get; set; }
 
         [Required]
         public string UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
         public CallStatus Status { get; set; }
@@ -40,5 +40,7 @@ namespace teleRDV.Models
         public DateTime? Ended { get; set; }
 
         public int Duration { get; set; }
+
+        public virtual Subscriber Subscriber { get; set; }
     }
 }

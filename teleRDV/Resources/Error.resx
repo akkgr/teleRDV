@@ -123,6 +123,12 @@
   <data name="PaymentMethodHasSubscribers" xml:space="preserve">
     <value>There are subscribers for this payment method. Payment method cannot be deleted</value>
   </data>
+  <data name="PersonHasAppointments" xml:space="preserve">
+    <value>Person Has Appointments</value>
+  </data>
+  <data name="PersonHasCalls" xml:space="preserve">
+    <value>Person Has Calls</value>
+  </data>
   <data name="SocialSecurityFundHasSubscribers" xml:space="preserve">
     <value>There are subscribers for this social security fund. Social security fund cannot be deleted</value>
   </data>

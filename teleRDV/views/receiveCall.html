@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" ng-if="callEntry.Started">
 
             <div class="col-md-6">
                 <div class="panel panel-default">
@@ -31,12 +31,20 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <label>{{ 'FullName' | translate }}</label>
-                            <input type="text" class="form-control" ng-model="subscriber.FullName" disabled>
+                            <label>{{ 'LastName' | translate }}</label>
+                            <input type="text" class="form-control" ng-model="callEntry.Subscriber.LastName" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'FirstName' | translate }}</label>
+                            <input type="text" class="form-control" ng-model="callEntry.Subscriber.FirstName" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'Company' | translate }}</label>
+                            <input type="text" class="form-control" ng-model="callEntry.Subscriber.Company" disabled>
                         </div>
                         <div class="form-group">
                             <label>{{ 'CallAnswer' | translate }}</label>
-                            <textarea class="form-control" ng-model="subscriber.CallAnswer" disabled></textarea>
+                            <textarea class="form-control" ng-model="callEntry.Subscriber.CallAnswer" disabled></textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-md-offset-8">
@@ -50,22 +58,30 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="row panel-title">
-                            <div class="col-xs-7 col-sm-9">{{ 'Person' | translate }}</div>
-                            <div class="col-xs-5 col-sm-3 text-right">
-                                <a href="javascript:void(0)" ng-click="addDevice()"><span class="text-success command"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                                <a href="javascript:void(0)" ng-click="findDevice()"><span style="padding-left:20px" class="text-success command"><i class="fa fa-search" aria-hidden="true"></i></span></a>
-                            </div>
-                        </div>                        
+                        {{ 'Person' | translate }}                        
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <label>{{ 'FullName' | translate }}</label>
-                            <input type="text" class="form-control" ng-model="callEntry.Person.FullName" disabled>
+                            <label>{{ 'Phone' | translate }}</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="callEntry.Person.PhonesInfo">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="button" ng-click="findPerson()"><i class="fa fa-fw  fa-search" aria-hidden="true"></i></button>                                    
+                                </div>
+                            </div>                            
                         </div>
                         <div class="form-group">
-                            <label>{{ 'Phones' | translate }}</label>
-                            <textarea class="form-control" ng-model="callEntry.Person.PhonesInfo" disabled></textarea>
+                            <label>{{ 'LastName' | translate }}</label>                            
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="callEntry.Person.LastName" disabled>
+                                <div class="input-group-btn">                                    
+                                    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal1" data-backdrop="static"><i class="fa fa-fw fa-info" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'FirstName' | translate }}</label>
+                            <input type="text" class="form-control" ng-model="callEntry.Person.FirstName" disabled>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -74,15 +90,7 @@
                             <div class="col-md-6">
                                 <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal3" data-backdrop="static">{{ 'NewAppointment' | translate }}</button>
                             </div>                            
-                        </div>
-                        <!--<div class="row">                            
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal2" data-backdrop="static">{{ 'Appointments' | translate }}</button>
-                            </div>
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal1" data-backdrop="static">{{ 'Card' | translate }}</button>
-                            </div>
-                        </div>-->                            
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -96,7 +104,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="pull-right" style="margin-right:20px;margin-top:10px"><button type="button" data-dismiss="modal" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-                <faqs title="'FAQ'" faqs="subscriber.Faqs" locked="true"></faqs>
+                <faqs title="'FAQ'" faqs="callEntry.Subscriber.Faqs" locked="true"></faqs>
             </div>
         </div>
     </div>
@@ -139,6 +147,37 @@
             </div>
             <div class="modal-body">
                 <appointment appointment="callEntry.Person.Appointments"></appointment>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ 'People' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>{{ 'FullName' | translate }}</th>
+                                <th>{{ 'PhonesInfo' | translate }}</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in people">
+                                <td>{{row.FullName}}</td>
+                                <td>{{row.PhonesInfo}}</td>
+                                <td><button class="btn btn-danger"  ng-click="selectRow(row)"><i class="fa fa-hand-grab-o" aria-hidden="true"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

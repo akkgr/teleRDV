@@ -123,6 +123,12 @@
   <data name="PaymentMethodHasSubscribers" xml:space="preserve">
     <value>Υπάρχουν καταχωρημένοι γιατροί για τον τρόπο πληρωμής. Ο τρόπος πληρωμής δεν μπορεί να διαγραφεί.</value>
   </data>
+  <data name="PersonHasAppointments" xml:space="preserve">
+    <value>Person Has Appointments</value>
+  </data>
+  <data name="PersonHasCalls" xml:space="preserve">
+    <value>Person Has Calls</value>
+  </data>
   <data name="SocialSecurityFundHasSubscribers" xml:space="preserve">
     <value>Υπάρχουν καταχωρημένοι γιατροί για τον ασφαλιστικό φορέα. Ο ασφαλιστικός φορέας δεν μπορεί να διαγραφεί.</value>
   </data>
