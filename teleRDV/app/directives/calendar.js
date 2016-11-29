@@ -29,10 +29,10 @@ angular.module('app')
                 ];
 
                 scope.refresh = function () {
-                    scope.monthName = monthNames[scope.month];
+                    scope.monthName = monthNames[scope.month - 1];
                     scope.days = [];
                     var monthDays = new Date(scope.year, scope.month, 0).getDate();
-                    var wd = new Date(scope.year, scope.month, 1).getDay();
+                    var wd = new Date(scope.year, scope.month, 0).getDay();
 
                     for (var i = 0; i < wd ; i++) {
                         scope.days.push('');
@@ -44,17 +44,17 @@ angular.module('app')
                 };
 
                 scope.prevMonth = function () {
-                    var d = new Date(scope.year, scope.month, 1);
+                    var d = new Date(scope.year, scope.month, 0);
                     d.setMonth(d.getMonth() - 1);
-                    scope.month = d.getMonth();
+                    scope.month = d.getMonth() + 1;
                     scope.year = d.getFullYear();
                     scope.refresh();
                 };
 
                 scope.nextMonth = function () {
-                    var d = new Date(scope.year, scope.month, 1);
+                    var d = new Date(scope.year, scope.month, 0);
                     d.setMonth(d.getMonth() + 1);
-                    scope.month = d.getMonth();
+                    scope.month = d.getMonth() + 1;
                     scope.year = d.getFullYear();
                     scope.refresh();
                 };

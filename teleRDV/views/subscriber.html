@@ -63,6 +63,11 @@
 
             <scheduler schedule="subscriber.WorkSchedule" ></scheduler>
 
+            <div class="form-group">
+                <label>{{ 'RdvDuration' | translate }}</label>
+                <input type="text" class="form-control" ng-model="subscriber.RdvDuration">
+            </div>
+
             <phones title="'DivertPhones'" phones="subscriber.DivertPhones"></phones>
 
             <faqs title="'FAQ'" faqs="subscriber.Faqs"></faqs>
