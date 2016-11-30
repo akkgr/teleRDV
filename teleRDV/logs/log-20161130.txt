@@ -1,0 +1,5 @@
+2016-11-30 13:51:58.802 +02:00 [Error] Exception of type 'System.OutOfMemoryException' was thrown.
+2016-11-30 14:33:15.682 +02:00 [Error] 
+The value 'function getFullYear() { [native code] }' is not valid for Int32.
+2016-11-30 14:34:33.522 +02:00 [Error] 
+The value 'function getFullYear() { [native code] }' is not valid for Int32.

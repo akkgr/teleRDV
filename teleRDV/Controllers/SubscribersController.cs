@@ -1,4 +1,6 @@
 using MongoDB.Driver;
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -6,6 +8,7 @@ using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
+    [RoutePrefix("api/subscribers")]
     public class SubscribersController : ApiController
     {
         private readonly Context db;
@@ -67,6 +70,45 @@ namespace teleRDV.Controllers
         {
             await db.Subscribers.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
+        }
+
+        [HttpGet]
+        [Route("{id}/{year}/{month}/{day}")]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> Get(string id, int year, int month, int day)
+        {
+            List<List<DateTime>> days = new List<List<DateTime>>();
+            
+            var d = new DateTime(year, month, day);
+            var obj = await db.Subscribers.Find(t => t.Id == id).FirstOrDefaultAsync();
+            if (obj == null)
+            {
+                return this.NotFound();
+            }
+
+            while(days.Count < 5)
+            {                
+                var s = obj.WorkSchedule.DayEntries.FirstOrDefault(t => t.WeekDay == d.DayOfWeek);
+                if (s.Active)
+                {
+                    var tmp = new List<DateTime>();
+                    foreach(var te in s.TimeEntries)
+                    {
+                        var es = d.AddHours(te.StartHour).AddMinutes(te.StartMinute);
+                        var ee = d.AddHours(te.EndHour).AddMinutes(te.EndMinute);
+
+                        while(es <= ee)
+                        {
+                            tmp.Add(es);
+                            es = es.AddMinutes(obj.RdvDuration);
+                        }
+                    }
+                    days.Add(tmp);
+                }
+                d = d.AddDays(1);
+            }
+            
+            return this.Ok(days);
         }
     }
 }

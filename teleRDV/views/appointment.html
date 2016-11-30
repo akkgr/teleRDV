@@ -1,14 +1,22 @@
 ﻿<div class="row">
-    <div class="form-group col-md-6">
-        <label>{{ 'DateTime' | translate }}</label>
-        <my-date-input date-time="appointment.DateTime"></my-date-input>
+    <div class="col-md-1"><button class="btn btn-default btn-block"><i class="fa fa-angle-left"></i></button></div>
+    <div class="col-md-2" ng-repeat="day in days">
+        <div class="row">
+            <div class="col-md-12">{{day[0] | date: 'EEEE d/MM'}}</div>
+        </div>
+        <div class="row" ng-repeat="hour in day">
+            <div class="col-md-12">{{hour | date : 'HH:mm'}}</div>
+        </div>
     </div>
-    <div class="form-group col-md-6">
-        <label>{{ 'Remarks' | translate }}</label>
-        <textarea class="form-control" ng-model="appointment.Remarks" ></textarea>
-    </div>
+    <div class="col-md-1"><button class="btn btn-default btn-block"><i class="fa fa-angle-right"></i></button></div>
 </div>
 
-<table class="table table-condensed">
-    ...
-</table>
+<div class="row" style="margin-top:20px">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>{{ 'Remarks' | translate }}</label>
+            <textarea class="form-control" ng-model="appointment.Remarks"></textarea>
+        </div>
+        <button class="btn btn-default pull-right"><i class="fa fa-save"></i> Add</button>
+    </div>    
+</div>

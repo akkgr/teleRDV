@@ -88,7 +88,7 @@
                                 <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal2" data-backdrop="static">{{ 'Appointments' | translate }}</button>
                             </div>
                             <div class="col-md-6">
-                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal3" data-backdrop="static">{{ 'NewAppointment' | translate }}</button>
+                                <button type="button" class="btn btn-default btn-block" ng-click="refresh()">{{ 'NewAppointment' | translate }}</button>
                             </div>                            
                         </div>                        
                     </div>
@@ -146,7 +146,7 @@
                 <h4 class="modal-title" id="myModalLabel">{{ 'Appointment' | translate }}</h4>
             </div>
             <div class="modal-body">
-                <appointment appointment="callEntry.Person.Appointments"></appointment>
+                <appointment appointment="appointment" days="days"></appointment>
             </div>
         </div>
     </div>

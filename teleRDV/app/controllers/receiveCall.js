@@ -14,6 +14,7 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
                 url: baseUrl + 'api/callentries/start/' + $scope.callEntry.Line
             }).then(function successCallback(response) {
                 $scope.callEntry = response.data;
+                $scope.appointment = { SubscriberId: $scope.callEntry.Subscriber.Id, DateTime: new Date() };
             }, function errorCallback(response) {
                 if (response.status === -1) {
                     swal("Error", "Server unavailable!", "error");
@@ -89,6 +90,30 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
     $scope.selectRow = function (row) {
         $scope.callEntry.Person = row;
         $('#myModal4').modal('toggle');
+    };
+
+    $scope.refresh = function () {
+        if ($scope.appointment) {
+            var id = $scope.appointment.SubscriberId;
+            var year = $scope.appointment.DateTime.getFullYear();
+            var month = $scope.appointment.DateTime.getMonth() + 1;
+            var day = $scope.appointment.DateTime.getDate();
+            $http({
+                method: 'GET',
+                url: baseUrl + 'api/subscribers/' + id + '/' + year + '/' + month + '/' + day
+            }).then(function successCallback(response) {
+                $scope.days = response.data;
+                $('#myModal3').modal({
+                    backdrop: "static"
+                });
+            }, function errorCallback(response) {
+                if (response.status === -1) {
+                    swal("Error", "Server unavailable!", "error");
+                } else {
+                    swal("Error", response.statusText + ". " + response.data.Message, "error");
+                }
+            });
+        }
     };
 
 }]);
