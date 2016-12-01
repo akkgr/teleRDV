@@ -1,0 +1,9 @@
+2016-12-01 21:22:17.397 +02:00 [Error] 
+Required property 'Status' not found in JSON. Path '', line 1, position 81.
+The PersonId field is required.
+The UserId field is required.
+2016-12-01 21:35:27.046 +02:00 [Error] 
+Required property 'Status' not found in JSON. Path '', line 1, position 119.
+The UserId field is required.
+2016-12-01 21:47:33.606 +02:00 [Error] 
+The PersonId field is required.

@@ -77,7 +77,7 @@ namespace teleRDV.Controllers
         [AllowAnonymous]
         public async Task<IHttpActionResult> Get(string id, int year, int month, int day)
         {
-            List<List<DateTime>> days = new List<List<DateTime>>();
+            List<Calendar> days = new List<Calendar>();
             
             var d = new DateTime(year, month, day);
             var obj = await db.Subscribers.Find(t => t.Id == id).FirstOrDefaultAsync();
@@ -87,11 +87,13 @@ namespace teleRDV.Controllers
             }
 
             while(days.Count < 7)
-            {                
+            {
                 var s = obj.WorkSchedule.DayEntries.FirstOrDefault(t => t.WeekDay == d.DayOfWeek);
-                var tmp = new List<DateTime>();
+                var cal = new Calendar();
+                cal.Day = d;
+                cal.Active = s.Active;                
                 if (s.Active)
-                {                    
+                {                   
                     foreach(var te in s.TimeEntries)
                     {
                         var es = d.AddHours(te.StartHour).AddMinutes(te.StartMinute);
@@ -99,16 +101,14 @@ namespace teleRDV.Controllers
 
                         while(es <= ee)
                         {
-                            tmp.Add(es);
+                            var dt = es.AddMinutes(obj.RdvDuration);
+                            var hasApp = await db.Appointments.Find(t => t.SubscriberId == id && t.DateTime >= es && t.DateTime <= dt).AnyAsync();
+                            cal.TimeTable.Add(new TimeTable() { Time = es, Free = !hasApp });
                             es = es.AddMinutes(obj.RdvDuration);
                         }
                     }
                 }
-                else
-                {
-                    tmp.Add(d);
-                }
-                days.Add(tmp);
+                days.Add(cal);
                 d = d.AddDays(1);
             }
             

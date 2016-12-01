@@ -5,7 +5,7 @@ angular.module('app')
     return {
         restrict: 'E',
         scope: {
-            appointment: '=',
+            appointment: '=',            
             getDays: '='
         },
         templateUrl: '/views/appointment.html',
@@ -18,37 +18,59 @@ angular.module('app')
                 return new Date(d.setDate(diff));
             }
 
+            scope.checkTime = function (hour) {
+                if (hour && scope.appointment.DateTime) {
+                    var d = new Date(hour.Time);
+                    return d.getTime() == scope.appointment.DateTime.getTime();
+                } else {
+                    return false;
+                }
+            };
+
+            scope.selectDay = function (hour) {
+                var d = new Date(hour.Time);
+                if (scope.appointment.DateTime) {                    
+                    if( d.getTime() == scope.appointment.DateTime.getTime())
+                    {
+                        scope.appointment.DateTime = null;
+                    } else {
+                        scope.appointment.DateTime = d;
+                    }
+                } else {
+                    scope.appointment.DateTime = d;
+                }                
+            };
+
             scope.curDays = function () {
-                scope.appointment.DateTime = getMonday(new Date());
+                scope.startDay = getMonday(new Date());
                 scope.getDays();
             };
 
             scope.prevDays = function () {
-                if (scope.appointment.DateTime) {
-                    scope.appointment.DateTime.setDate(scope.appointment.DateTime.getDate() - 7);
-                    scope.getDays();
-                }
+                scope.startDay.setDate(scope.startDay.getDate() - 7);
+                scope.getDays();
             };
 
             scope.nextDays = function () {
-                if (scope.appointment.DateTime) {
-                    scope.appointment.DateTime.setDate(scope.appointment.DateTime.getDate() + 7);
-                    scope.getDays();
-                }
+                scope.startDay.setDate(scope.startDay.getDate() + 7);
+                scope.getDays();
             };
 
             scope.getDays = function () {
                 if (scope.appointment) {
 
-                    if (!scope.appointment.DateTime) {
-                        scope.appointment.DateTime = getMonday(new Date());
+                    if (!scope.startDay) {
+                        if (!scope.appointment.DateTime) {
+                            scope.startDay = getMonday(new Date());
+                        } else {
+                            scope.startDay = new Date(scope.appointment.DateTime);
+                        }
                     }
 
-                    console.log(scope.appointment.DateTime);
                     var id = scope.appointment.SubscriberId;
-                    var year = scope.appointment.DateTime.getFullYear();
-                    var month = scope.appointment.DateTime.getMonth() + 1;
-                    var day = scope.appointment.DateTime.getDate();
+                    var year = scope.startDay.getFullYear();
+                    var month = scope.startDay.getMonth() + 1;
+                    var day = scope.startDay.getDate();
                     $http({
                         method: 'GET',
                         url: baseUrl + 'api/subscribers/' + id + '/' + year + '/' + month + '/' + day
@@ -64,6 +86,33 @@ angular.module('app')
                 }
             };
 
+            scope.save = function () {
+                if (scope.appointment.DateTime) {
+                    swal({
+                        title: "Are you sure?",
+                        text: "Are you sure that you want to save this Apoointment?",
+                        type: "warning",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        confirmButtonText: "Yes",
+                        confirmButtonColor: "#ec6c62"
+                    }, function () {
+                        $http({
+                            method: 'POST',
+                            url: baseUrl + 'api/appointments',
+                            data: scope.appointment
+                        }).then(function successCallback() {
+                            swal("Success", "Appointment successfully created.", "success");                            
+                        }, function errorCallback(response) {
+                            if (response.status === -1) {
+                                swal("Error", "Server unavailable!", "error");
+                            } else {
+                                swal("Error", response.statusText + ". " + response.data.Message, "error");
+                            }
+                        });
+                    });
+                }
+            };
         }
     };
 }]);

@@ -6,20 +6,19 @@
 
 <div class="row seven-cols no-gutter">
     <div class="col-md-1" ng-repeat="day in days">
-        <div class="row">
-            <div class="col-md-12 bg-primary" style="text-align:center;font-size:18px;">
-                {{day[0] | date: 'EEEE'}}
-                <br />
-                {{day[0] | date: 'd/MM'}}
-            </div>
+        <div class="bg-primary text-center">
+            {{day.Day | date: 'EEEE'}}
+            <br />
+            {{day.Day| date: 'd/MM'}}
         </div>
-        <div class="row" ng-repeat="hour in day">
+        <div class="row no-gutter" ng-repeat="hour in day.TimeTable" ng-if="day.Active">
             <div class="col-md-12">
-                <button class="btn btn-default btn-sm btn-block" ng-click="changeActive(n)">
-                    <span>{{hour | date : 'HH:mm'}}</span>
-                    <i class="fa fa-check pull-left" aria-hidden="true" ng-if="schedule.DayEntries[n].Active"></i>
-                    <i class="fa fa-ban pull-left" aria-hidden="true" ng-if="!schedule.DayEntries[n].Active"></i>
-                </button>     
+                <div class="text-center" style="cursor:pointer" ng-click="selectDay(hour)" 
+                     ng-class="{'bg-warning': !hour.Free, 'bg-success': hour.Free, 'bg-info': checkTime(hour)}">                    
+                    <span >{{hour.Time | date : 'HH:mm'}}</span>
+                    <i class="fa fa-check text-success" aria-hidden="true" ng-if="checkTime(hour)"></i>
+                    <i class="fa fa-ban text-danger" aria-hidden="true" ng-if="!hour.Free"></i>                    
+                </div>
             </div>
         </div>
     </div>
@@ -31,6 +30,6 @@
             <label>{{ 'Remarks' | translate }}</label>
             <textarea class="form-control" ng-model="appointment.Remarks"></textarea>
         </div>
-        <button class="btn btn-default pull-right"><i class="fa fa-save"></i> Add</button>
+        <button class="btn btn-default pull-right" ng-click="save()"><i class="fa fa-save"></i> Add</button>
     </div>
 </div>

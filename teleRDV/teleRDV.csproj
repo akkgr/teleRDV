@@ -295,6 +295,7 @@
     <Compile Include="Controllers\PaymentMethodsController.cs" />
     <Compile Include="Controllers\CallEntriesController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\AppointmentsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\CustomExceptionFilterAttribute.cs" />
     <Compile Include="App_Start\Helper.cs" />
@@ -302,6 +303,7 @@
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\AppointmentStatus.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\CallEntry.cs" />
     <Compile Include="Models\CallReason.cs" />
     <Compile Include="Models\CallStatus.cs" />

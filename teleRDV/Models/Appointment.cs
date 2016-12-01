@@ -15,11 +15,9 @@ namespace teleRDV.Models
         public DateTime DateTime { get; set; }
 
         public string Remarks { get; set; }
-
-        [Required]
+        
         public AppointmentStatus Status { get; set; }
-
-        [Required]
+        
         public string UserId { get; set; }
 
         public Subscriber Subscriber { get; set; }

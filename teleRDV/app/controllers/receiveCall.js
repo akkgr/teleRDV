@@ -89,6 +89,8 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
 
     $scope.selectRow = function (row) {
         $scope.callEntry.Person = row;
+        $scope.callEntry.PersonId = row.Id;
+        $scope.appointment.PersonId = row.Id;
         $('#myModal4').modal('toggle');
     };
 
