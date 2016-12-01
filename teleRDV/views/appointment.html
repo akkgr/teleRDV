@@ -1,14 +1,28 @@
-﻿<div class="row">
-    <div class="col-md-1"><button class="btn btn-default btn-block"><i class="fa fa-angle-left"></i></button></div>
-    <div class="col-md-2" ng-repeat="day in days">
+﻿<div class="row no-gutter">
+    <div class="col-md-3"><button class="btn btn-info btn-block" ng-click="prevDays()"><i class="fa fa-angle-left"></i></button></div>
+    <div class="col-md-6"><button class="btn btn-info btn-block" ng-click="curDays()">{{ 'CurrentWeek' | translate }}</button></div>
+    <div class="col-md-3"><button class="btn btn-info btn-block" ng-click="nextDays()"><i class="fa fa-angle-right"></i></button></div>
+</div>
+
+<div class="row seven-cols no-gutter">
+    <div class="col-md-1" ng-repeat="day in days">
         <div class="row">
-            <div class="col-md-12">{{day[0] | date: 'EEEE d/MM'}}</div>
+            <div class="col-md-12 bg-primary" style="text-align:center;font-size:18px;">
+                {{day[0] | date: 'EEEE'}}
+                <br />
+                {{day[0] | date: 'd/MM'}}
+            </div>
         </div>
         <div class="row" ng-repeat="hour in day">
-            <div class="col-md-12">{{hour | date : 'HH:mm'}}</div>
+            <div class="col-md-12">
+                <button class="btn btn-default btn-sm btn-block" ng-click="changeActive(n)">
+                    <span>{{hour | date : 'HH:mm'}}</span>
+                    <i class="fa fa-check pull-left" aria-hidden="true" ng-if="schedule.DayEntries[n].Active"></i>
+                    <i class="fa fa-ban pull-left" aria-hidden="true" ng-if="!schedule.DayEntries[n].Active"></i>
+                </button>     
+            </div>
         </div>
     </div>
-    <div class="col-md-1"><button class="btn btn-default btn-block"><i class="fa fa-angle-right"></i></button></div>
 </div>
 
 <div class="row" style="margin-top:20px">
@@ -18,5 +32,5 @@
             <textarea class="form-control" ng-model="appointment.Remarks"></textarea>
         </div>
         <button class="btn btn-default pull-right"><i class="fa fa-save"></i> Add</button>
-    </div>    
+    </div>
 </div>

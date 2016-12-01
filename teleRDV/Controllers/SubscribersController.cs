@@ -86,12 +86,12 @@ namespace teleRDV.Controllers
                 return this.NotFound();
             }
 
-            while(days.Count < 5)
+            while(days.Count < 7)
             {                
                 var s = obj.WorkSchedule.DayEntries.FirstOrDefault(t => t.WeekDay == d.DayOfWeek);
+                var tmp = new List<DateTime>();
                 if (s.Active)
-                {
-                    var tmp = new List<DateTime>();
+                {                    
                     foreach(var te in s.TimeEntries)
                     {
                         var es = d.AddHours(te.StartHour).AddMinutes(te.StartMinute);
@@ -103,8 +103,12 @@ namespace teleRDV.Controllers
                             es = es.AddMinutes(obj.RdvDuration);
                         }
                     }
-                    days.Add(tmp);
                 }
+                else
+                {
+                    tmp.Add(d);
+                }
+                days.Add(tmp);
                 d = d.AddDays(1);
             }
             
