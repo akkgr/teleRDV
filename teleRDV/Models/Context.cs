@@ -64,7 +64,6 @@ namespace teleRDV.Models
             BsonClassMap.RegisterClassMap<Appointment>(cm =>
             {
                 cm.AutoMap();
-                cm.MapMember(c => c.DateTime).SetSerializer(new DateTimeSerializer(DateTimeKind.Local));
                 cm.UnmapMember(c => c.Subscriber);
                 cm.UnmapMember(c => c.Person);
                 cm.UnmapMember(c => c.User);

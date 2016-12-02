@@ -78,31 +78,31 @@ namespace teleRDV.Controllers
         public async Task<IHttpActionResult> Get(string id, int year, int month, int day)
         {
             List<Calendar> days = new List<Calendar>();
-            
-            var d = new DateTime(year, month, day);
+
+            var d = new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Local);
             var obj = await db.Subscribers.Find(t => t.Id == id).FirstOrDefaultAsync();
             if (obj == null)
             {
                 return this.NotFound();
             }
 
-            while(days.Count < 7)
+            while (days.Count < 7)
             {
                 var s = obj.WorkSchedule.DayEntries.FirstOrDefault(t => t.WeekDay == d.DayOfWeek);
                 var cal = new Calendar();
                 cal.Day = d;
-                cal.Active = s.Active;                
+                cal.Active = s.Active;
                 if (s.Active)
-                {                   
-                    foreach(var te in s.TimeEntries)
+                {
+                    foreach (var te in s.TimeEntries)
                     {
                         var es = d.AddHours(te.StartHour).AddMinutes(te.StartMinute);
                         var ee = d.AddHours(te.EndHour).AddMinutes(te.EndMinute);
 
-                        while(es <= ee)
+                        while (es <= ee)
                         {
                             var dt = es.AddMinutes(obj.RdvDuration);
-                            var hasApp = await db.Appointments.Find(t => t.SubscriberId == id && t.DateTime >= es && t.DateTime <= dt).AnyAsync();
+                            var hasApp = await db.Appointments.Find(t => t.SubscriberId == id && t.DateTime >= es && t.DateTime < dt).AnyAsync();
                             cal.TimeTable.Add(new TimeTable() { Time = es, Free = !hasApp });
                             es = es.AddMinutes(obj.RdvDuration);
                         }
@@ -111,7 +111,7 @@ namespace teleRDV.Controllers
                 days.Add(cal);
                 d = d.AddDays(1);
             }
-            
+
             return this.Ok(days);
         }
     }

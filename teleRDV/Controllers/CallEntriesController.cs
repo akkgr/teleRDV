@@ -53,17 +53,6 @@ namespace teleRDV.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Post([FromBody]CallEntry value)
         {
-            if(string.IsNullOrEmpty(value.Person.Id))
-            {
-                await db.People.InsertOneAsync(value.Person);
-                value.PersonId = value.Person.Id;
-            }
-            else
-            {
-                var query = Builders<Person>.Filter.Eq(e => e.Id, value.Person.Id);
-                await db.People.ReplaceOneAsync(query, value.Person);
-            }
-
             value.Ended = DateTime.Now;
             value.Duration = (value.Ended.Value - value.Started).Seconds;
 
@@ -115,6 +104,7 @@ namespace teleRDV.Controllers
             obj.Reason = CallReason.Question;
             obj.Person = new Person();
             obj.UserId = user.Id;
+            obj.SubscriberId = sub.Id;
             obj.Subscriber = sub;
             
             return Ok(obj);

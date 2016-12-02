@@ -35,32 +35,7 @@ namespace teleRDV.Controllers
 
             return this.Ok(obj);
         }
-
-        [HttpGet]
-        [Route("{subId}/{phone}/{id}")]
-        public async Task<IHttpActionResult> Get(string subId, string phone, string id)
-        {
-            if(id=="new")
-            {
-                var builder = Builders<Person>.Filter;
-                var filter = builder.Eq("Phones.Value", phone);
-                var result = await db.People.Find(filter).ToListAsync();
-                return this.Ok(result);
-            }
-            else
-            {
-                var builder = Builders<Person>.Filter;
-                var filter = builder.Eq("Id", id);
-                var obj = await db.People.Find(filter).FirstOrDefaultAsync();
-                if (obj == null)
-                {
-                    return this.NotFound();
-                }
-                obj.Appointments = await  db.Appointments.Find(t => t.PersonId == id && t.SubscriberId == subId).ToListAsync();
-                return this.Ok(obj);
-            }
-        }
-
+        
         // POST api/values
         [HttpPost]
         public async Task<IHttpActionResult> Post([FromBody]Person value)
@@ -110,6 +85,16 @@ namespace teleRDV.Controllers
 
             await db.People.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
+        }
+
+        [HttpGet]
+        [Route("phone/{phone}")]
+        public async Task<IHttpActionResult> GetByPhne(string phone)
+        {
+            var builder = Builders<Person>.Filter;
+            var filter = builder.Eq("Phones.Value", phone);
+            var result = await db.People.Find(filter).ToListAsync();
+            return this.Ok(result);
         }
     }
 }

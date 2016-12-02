@@ -11,7 +11,7 @@ angular.module('app')
             templateUrl: '/views/calendar.html',
             link: function (scope) {
 
-                scope.weekDays = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+                scope.weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
                 var monthNames = [
                     "January",
@@ -34,11 +34,12 @@ angular.module('app')
                     var monthDays = new Date(scope.year, scope.month, 0).getDate();
                     var wd = new Date(scope.year, scope.month, 0).getDay();
 
-                    for (var i = 0; i < wd ; i++) {
+                    var i = 0;
+                    for (i = 0; i < wd; i++) {
                         scope.days.push('');
                     }
 
-                    for (var i = 1; i < monthDays + 1 ; i++) {
+                    for (i = 1; i < monthDays + 1; i++) {
                         scope.days.push(i);
                     }
                 };

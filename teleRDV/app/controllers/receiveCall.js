@@ -2,8 +2,8 @@
 
 /* Controllers */
 angular.module('app')
-.controller('ReceiveCallCtrl', ['$scope', '$http', '$routeParams', 'baseUrl', '$location',
-function ($scope, $http, $routeParams, baseUrl, $location) {
+.controller('ReceiveCallCtrl', ['$scope', '$http', '$routeParams', 'baseUrl',
+function ($scope, $http, $routeParams, baseUrl) {
 
     $scope.callEntry = {};
 
@@ -13,8 +13,7 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
                 method: 'GET',
                 url: baseUrl + 'api/callentries/start/' + $scope.callEntry.Line
             }).then(function successCallback(response) {
-                $scope.callEntry = response.data;
-                $scope.appointment = { SubscriberId: $scope.callEntry.Subscriber.Id };
+                $scope.callEntry = response.data;                
             }, function errorCallback(response) {
                 if (response.status === -1) {
                     swal("Error", "Server unavailable!", "error");
@@ -29,7 +28,7 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
         if ($scope.callEntry.Person && $scope.callEntry.Person.PhonesInfo) {            
             $http({
                 method: 'GET',
-                url: baseUrl + 'api/people/' + $scope.callEntry.Subscriber.Id + '/' + $scope.callEntry.Person.PhonesInfo + '/new'
+                url: baseUrl + 'api/people/phone/' + $scope.callEntry.Person.PhonesInfo
             }).then(function successCallback(response) {
                 if (response.data.length > 0) {
                     $scope.people = response.data;
@@ -49,14 +48,47 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
         }
     };
 
+    $scope.savePerson = function () {
+        var method = 'POST';
+        var url = baseUrl + 'api/people/';
+
+        if ($scope.callEntry.Person.Id) {
+            method = 'PUT';
+            url += $scope.callEntry.Person.Id;
+        }
+
+        $http({
+            method: method,
+            url: url,
+            data: $scope.callEntry.Person
+        }).then(function successCallback(response) {
+            $scope.callEntry.Person = response.data;
+            swal("Success", "Person successfully saved.", "success");
+        }, function errorCallback(response) {
+            if (response.status === -1) {
+                swal("Error", "Server unavailable!", "error");
+            } else {
+                swal("Error", response.statusText + ". " + response.data.Message, "error");
+            }
+        });
+    };
+
     $scope.stopCall = function () {
-        if ($scope.callEntry.Line) {
+        if ($scope.callEntry.SubscriberId && $scope.callEntry.PersonId) {
             $http({
                 method: 'POST',
                 url: baseUrl + 'api/callentries',
                 data: $scope.callEntry
             }).then(function successCallback(response) {
                 $scope.callEntry = response.data
+                swal({
+                    title: "Success", 
+                    text: "Call successfully saved.",
+                    type: "success"
+                }, function () {
+                    $scope.callEntry = {};
+                    $scope.$apply();
+                });                
             }, function errorCallback(response) {
                 if (response.status === -1) {
                     swal("Error", "Server unavailable!", "error");
@@ -71,9 +103,9 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
         if ($scope.callEntry.Person && $scope.callEntry.Person.Id) {
             $http({
                 method: 'GET',
-                url: baseUrl + 'api/people/' + $scope.callEntry.Subscriber.Id + '/' + $scope.callEntry.Person.PhonesInfo + '/' + $scope.callEntry.Person.Id
+                url: baseUrl + 'api/appointments/person/' + $scope.callEntry.Subscriber.Id + '/' + $scope.callEntry.Person.Id
             }).then(function successCallback(response) {
-                $scope.callEntry.Person = response.data;
+                $scope.callEntry.Person.Appointments = response.data;
                 $('#myModal2').modal({
                     backdrop: "static"
                 });
@@ -89,18 +121,28 @@ function ($scope, $http, $routeParams, baseUrl, $location) {
 
     $scope.selectRow = function (row) {
         $scope.callEntry.Person = row;
-        $scope.callEntry.PersonId = row.Id;
-        $scope.appointment.PersonId = row.Id;
+        $scope.callEntry.PersonId = row.Id;        
         $('#myModal4').modal('toggle');
     };
 
-    $scope.refresh = function () {
-        if ($scope.appointment) {
+    $scope.newAppointment = function () {
+        if ($scope.callEntry.SubscriberId && $scope.callEntry.PersonId) {
+            $scope.appointment = {
+                SubscriberId: $scope.callEntry.SubscriberId,
+                PersonId: $scope.callEntry.PersonId
+            };
             $scope.getDays();
             $('#myModal3').modal({
                 backdrop: "static"
             });
         }
+    };
+
+    $scope.addAppointment = function () {
+        var promise = $scope.saveAppointment();
+        promise.then(function () {
+            $('#myModal3').modal('toggle');
+        });
     };
 
 }]);

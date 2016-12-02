@@ -17,7 +17,8 @@ namespace teleRDV.Models
         public string Remarks { get; set; }
         
         public AppointmentStatus Status { get; set; }
-        
+        public string StatusInfo { get { return Status.ToString(); } }
+
         public string UserId { get; set; }
 
         public Subscriber Subscriber { get; set; }

@@ -85,10 +85,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal2" data-backdrop="static">{{ 'Appointments' | translate }}</button>
+                                <button type="button" class="btn btn-default btn-block" ng-click="getAppointments()">{{ 'Appointments' | translate }}</button>
                             </div>
                             <div class="col-md-6">
-                                <button type="button" class="btn btn-default btn-block" ng-click="refresh()">{{ 'NewAppointment' | translate }}</button>
+                                <button type="button" class="btn btn-default btn-block" ng-click="newAppointment()">{{ 'NewAppointment' | translate }}</button>
                             </div>                            
                         </div>                        
                     </div>
@@ -120,6 +120,10 @@
             <div class="modal-body">
                 <person person="callEntry.Person"></person>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | translate }}</button>
+                <button type="button" class="btn btn-primary" ng-click="savePerson()">{{ 'Save' | translate }}</button>
+            </div>
         </div>
     </div>
 </div>
@@ -146,7 +150,11 @@
                 <h4 class="modal-title" id="myModalLabel">{{ 'Appointment' | translate }}</h4>
             </div>
             <div class="modal-body">
-                <appointment appointment="appointment" get-days="getDays"></appointment>
+                <appointment appointment="appointment" get-days="getDays" save="saveAppointment"></appointment>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | translate }}</button>
+                <button type="button" class="btn btn-primary" ng-click="addAppointment()">{{ 'Save' | translate }}</button>
             </div>
         </div>
     </div>

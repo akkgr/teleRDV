@@ -1,11 +1,13 @@
 using MongoDB.Driver;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using teleRDV.Models;
 
 namespace teleRDV.Controllers
 {
+    [RoutePrefix("api/appointments")]
     public class AppointmentsController : ApiController
     {
         private readonly Context db;
@@ -39,11 +41,11 @@ namespace teleRDV.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Post([FromBody]Appointment value)
         {
-            if(value.DateTime < DateTime.Now)
+            if(value.DateTime < DateTime.Now.ToUniversalTime())
             {
                 return BadRequest("Cannot create Appointment in the past");
             }
-
+            
             value.Status = AppointmentStatus.Open;
             value.UserId = (await db.Users.Find(t => t.UserName == User.Identity.Name).FirstOrDefaultAsync()).Id;
 
@@ -72,6 +74,25 @@ namespace teleRDV.Controllers
         {
             await db.Appointments.FindOneAndDeleteAsync(t => t.Id == id);
             return this.Ok();
+        }
+
+        [HttpGet]
+        [Route("person/{sid}/{pid}")]
+        public async Task<IHttpActionResult> GetPerson(string sid, string pid)
+        {
+            var obj = await db.Appointments
+                .Find(t => t.SubscriberId == sid && t.PersonId == pid)                
+                .ToListAsync();            
+            return this.Ok(obj.OrderByDescending(t=>t.DateTime));
+        }
+
+        [HttpGet]
+        [Route("subscriber/{id}")]
+        public async Task<IHttpActionResult> GetSubscriber(string id)
+        {
+            var obj = await db.Appointments
+                .Find(t => t.SubscriberId == id).ToListAsync();            
+            return this.Ok(obj.OrderByDescending(t => t.DateTime));
         }
     }
 }

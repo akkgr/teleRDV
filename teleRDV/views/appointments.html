@@ -10,8 +10,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="row in appointments | filter:search" ng-class="{'active': row.Id == selectedRow.Id}" ng-click="selectRow(row)">
-                <td>{{row.DateTime}}</td>
-                <td>{{row.Status}}</td>
+                <td>{{row.DateTime | date : 'dd/MM/yyyy HH:mm'}}</td>
+                <td>{{row.StatusInfo | translate}}</td>
                 <td>{{row.Remarks}}</td>
                 <td><button class="btn btn-danger"><i class="fa fa-remove" aria-hidden="true"></i></button></td>
             </tr>

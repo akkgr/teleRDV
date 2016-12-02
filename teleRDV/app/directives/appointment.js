@@ -1,21 +1,22 @@
 ﻿'use strict';
 
 angular.module('app')
-.directive("appointment", ["$http", "enumService", "baseUrl", function ($http, enumService, baseUrl) {
+.directive("appointment", ["$http", "$q", "enumService", "baseUrl", function ($http, $q, enumService, baseUrl) {
     return {
         restrict: 'E',
         scope: {
             appointment: '=',            
-            getDays: '='
+            getDays: '=',
+            save: '='
         },
         templateUrl: '/views/appointment.html',
         link: function (scope) {
             
             function getMonday(d) {
-                d = new Date(d);
-                var day = d.getDay(),
-                    diff = d.getDate() - day + (day == 0 ? -6 : 1);
-                return new Date(d.setDate(diff));
+                var dt = new Date(d);
+                var day = dt.getDay(),
+                    diff = dt.getDate() - day + (day == 0 ? -6 : 1);
+                return new Date(dt.setDate(diff));
             }
 
             scope.checkTime = function (hour) {
@@ -28,17 +29,18 @@ angular.module('app')
             };
 
             scope.selectDay = function (hour) {
-                var d = new Date(hour.Time);
-                if (scope.appointment.DateTime) {                    
-                    if( d.getTime() == scope.appointment.DateTime.getTime())
-                    {
-                        scope.appointment.DateTime = null;
+                if (hour.Free) {
+                    var d = new Date(hour.Time);
+                    if (scope.appointment.DateTime) {
+                        if (d.getTime() == scope.appointment.DateTime.getTime()) {
+                            scope.appointment.DateTime = null;
+                        } else {
+                            scope.appointment.DateTime = d;
+                        }
                     } else {
                         scope.appointment.DateTime = d;
                     }
-                } else {
-                    scope.appointment.DateTime = d;
-                }                
+                }
             };
 
             scope.curDays = function () {
@@ -87,6 +89,8 @@ angular.module('app')
             };
 
             scope.save = function () {
+                var deferred = $q.defer();
+
                 if (scope.appointment.DateTime) {
                     swal({
                         title: "Are you sure?",
@@ -102,16 +106,22 @@ angular.module('app')
                             url: baseUrl + 'api/appointments',
                             data: scope.appointment
                         }).then(function successCallback() {
-                            swal("Success", "Appointment successfully created.", "success");                            
+                            swal("Success", "Appointment successfully created.", "success");
+                            deferred.resolve();
                         }, function errorCallback(response) {
                             if (response.status === -1) {
                                 swal("Error", "Server unavailable!", "error");
                             } else {
                                 swal("Error", response.statusText + ". " + response.data.Message, "error");
                             }
+                            deferred.reject();
                         });
                     });
+                } else {
+                    deferred.reject();
                 }
+
+                return deferred.promise;
             };
         }
     };

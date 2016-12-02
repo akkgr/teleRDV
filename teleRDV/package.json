@@ -16,6 +16,6 @@
     "main-bower-files": "^2.13.1"
   },
   "dependencies": {
-    "eslint": "^3.10.2"
+    "eslint": "^3.11.1"
   }
 }

@@ -41,6 +41,8 @@ namespace teleRDV.Models
 
         public int Duration { get; set; }
 
+        public string SubscriberId { get; set; }
+
         public virtual Subscriber Subscriber { get; set; }
     }
 }
