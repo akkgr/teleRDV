@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html ng-app="app">
 <head>
+    <base href="/" />
     <title>InfoNest</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <span><a class="navbar-brand" href="#/"><i class="fa fa-home" aria-hidden="true"></i> LogisticsPlus</a></span>
+            <span><a class="navbar-brand" href="/#!/"><i class="fa fa-home" aria-hidden="true"></i> LogisticsPlus</a></span>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
             <div class="container-fluid">
@@ -32,16 +33,16 @@
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-md" aria-hidden="true"></i> {{ 'Subscribers' | translate }} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#/specialties">{{ 'Specialties' | translate }}</a></li>
-                            <li><a href="#/paymentmethods">{{ 'PaymentMethods' | translate }}</a></li>
-                            <li><a href="#/socialsecurityfunds">{{ 'SocialSecurityFunds' | translate }}</a></li>
-                            <li><a href="#/subscribers">{{ 'SubscribersList' | translate }}</a></li>
+                            <li><a href="/#!/specialties">{{ 'Specialties' | translate }}</a></li>
+                            <li><a href="/#!/paymentmethods">{{ 'PaymentMethods' | translate }}</a></li>
+                            <li><a href="/#!/socialsecurityfunds">{{ 'SocialSecurityFunds' | translate }}</a></li>
+                            <li><a href="/#!/subscribers">{{ 'SubscribersList' | translate }}</a></li>
                         </ul>
                     </li>
 
                     <!--<li><a href="#/calendar">{{ 'Calendar' | translate }}</a></li>-->
-                    <li><a href="#/callqueue"><i class="fa fa-phone" aria-hidden="true"></i> {{ 'CallQueue' | translate }}</a></li>
-                    <li><a href="#/receivecall"><i class="fa fa-phone" aria-hidden="true"></i> {{ 'ReceiveCall' | translate }}</a></li>
+                    <li><a href="/#!/callqueue"><i class="fa fa-phone" aria-hidden="true"></i> {{ 'CallQueue' | translate }}</a></li>
+                    <li><a href="/#!/receivecall"><i class="fa fa-phone" aria-hidden="true"></i> {{ 'ReceiveCall' | translate }}</a></li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -50,7 +51,7 @@
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> {{authentication.userName}} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="" data-toggle="modal" data-target="#changeMyPassword">{{ 'ChangePassword' | translate }}</a></li>
-                            <li><a href="#/users" ng-show="authentication.isAdmin">{{ 'UsersManagment' | translate }}</a></li>
+                            <li><a href="/#!/users" ng-show="authentication.isAdmin">{{ 'UsersManagment' | translate }}</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="" ng-click="logOut()">{{ 'LogOut' | translate }}</a></li>
                         </ul>

@@ -52,8 +52,7 @@ namespace teleRDV
 
             ConfigureAuth(app);
             WebApiConfig.Register(config);
-            
-                       
+                                   
             app.UseAutofacWebApi(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);            
