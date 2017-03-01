@@ -33,39 +33,40 @@ angular.module('app')
 
         var deferred = $q.defer();
 
-        $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-            if (loginData.useRefreshTokens) {
-                localStorageService.set('authorizationData', {
-                    token: response.access_token,
-                    userName: loginData.userName,
-                    refreshToken: response.refresh_token,
-                    useRefreshTokens: true,
-                    isAdmin: response.isAdmin
-                });
-            }
-            else {
-                localStorageService.set('authorizationData', {
-                    token: response.access_token,
-                    userName: loginData.userName,
-                    refreshToken: "",
-                    useRefreshTokens: false,
-                    isAdmin: response.isAdmin
-                });
-            }
-            _authentication.isAuth = true;
-            _authentication.userName = loginData.userName;
-            _authentication.useRefreshTokens = loginData.useRefreshTokens;
-            if (response.isAdmin === "True") {
-                _authentication.isAdmin = true;
-            } else {
-                _authentication.isAdmin = false;
-            }
+        $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .then(function successCallback(response) {
+                if (loginData.useRefreshTokens) {
+                    localStorageService.set('authorizationData', {
+                        token: response.data.access_token,
+                        userName: loginData.userName,
+                        refreshToken: response.data.refresh_token,
+                        useRefreshTokens: true,
+                        isAdmin: response.data.isAdmin
+                    });
+                }
+                else {
+                    localStorageService.set('authorizationData', {
+                        token: response.data.access_token,
+                        userName: loginData.userName,
+                        refreshToken: "",
+                        useRefreshTokens: false,
+                        isAdmin: response.data.isAdmin
+                    });
+                }
+                _authentication.isAuth = true;
+                _authentication.userName = loginData.userName;
+                _authentication.useRefreshTokens = loginData.useRefreshTokens;
+                if (response.data.isAdmin === "True") {
+                    _authentication.isAdmin = true;
+                } else {
+                    _authentication.isAdmin = false;
+                }
 
-            deferred.resolve(response);
-        }).error(function (err) {
-            _logOut();
-            deferred.reject(err);
-        });
+                deferred.resolve(response);
+            }, function errorCallback(response) {
+                _logOut();
+                deferred.reject(response.data);
+            });
 
         return deferred.promise;
     };
